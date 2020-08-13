@@ -1,55 +1,71 @@
 #ifdef COMPILE_LEFT
     #define PIPE_NUMBER 0
-    #define S01 3
-    #define S02 4
-    #define S03 5
-    #define S04 2
-    #define S05 0
-    #define S06 1
-    #define S07 30
-    #define S08 29
-    #define S09 28
-    #define S10 25
-    #define S11 24
-    #define S12 23
-    #define S13 22
-    #define S14 21
-    #define S15 17
-    #define S16 12
-    #define S17 18
-    #define S18 19
-    #define S19 20
-    #define S20 13
-    #define S21 16
-    #define S22 15
-    #define S23 14
+    #define S01 18
+    #define S02 17
+    #define S03 16
+    #define S04 15
+    #define S05 14
+    #define S06 19
+    #define S07 20
+    #define S08 12
+    #define S09 11
+    #define S10 10
+    #define S11 8
+    #define S12 4
+    #define S13 26
+    #define S14 7
+    #define S15 6
+    #define S16 5
+    #define S17 0
+    #define S18 27
+    #define S19 23
+    #define S20 3
+    #define S21 2
+    #define S22 30
+    #define S23 28
+    #define S24 24
+    #define S25 21
+    #define S26 29
+    #define S27 25
+    #define S28 22
+    #define S29 9
+    #define S30 13
+    #define LED 1
 #endif
 
 #ifdef COMPILE_RIGHT
     #define PIPE_NUMBER 1
-    #define S01 1
-    #define S02 0
-    #define S03 30
-    #define S04 2
-    #define S05 4
-    #define S06 3
-    #define S07 5
-    #define S08 8
-    #define S09 9
-    #define S10 12
-    #define S11 13
-    #define S12 14
-    #define S13 15
-    #define S14 16
-    #define S15 17
-    #define S16 25
-    #define S17 18
-    #define S18 19
-    #define S19 20
-    #define S20 24
-    #define S21 21
-    #define S22 22
-    #define S23 23
+    #define S01 21
+    #define S02 22
+    #define S03 23
+    #define S04 24
+    #define S05 25
+    #define S06 26
+    #define S07 27
+    #define S08 20
+    #define S09 16
+    #define S10 8
+    #define S11 0
+    #define S12 30
+    #define S13 29
+    #define S14 28
+    #define S15 19
+    #define S16 15
+    #define S17 10
+    #define S18 9
+    #define S19 6
+    #define S20 4
+    #define S21 1
+    #define S22 18
+    #define S23 13
+    #define S24 11
+    #define S25 7
+    #define S26 5
+    #define S27 2
+    #define S28 17
+    #define S29 14
+    #define S30 12
+    #define LED 3
 #endif
 
 #define INPUT_MASK (1<<S01 | \
@@ -74,10 +90,17 @@
                     1<<S20 | \
                     1<<S21 | \
                     1<<S22 | \
-                    1<<S23)
+                    1<<S23 | \
+                    1<<S24 | \
+                    1<<S25 | \
+                    1<<S26 | \
+                    1<<S27 | \
+                    1<<S28 | \
+                    1<<S29 | \
+                    1<<S30) & ~(1<<LED)
 
 // Low frequency clock source to be used by the SoftDevice
-#define NRF_CLOCK_LFCLKSRC      {.source        = NRF_CLOCK_LF_SRC_XTAL,            \
-                                 .rc_ctiv       = 0,                                \
-                                 .rc_temp_ctiv  = 0,                                \
+#define NRF_CLOCK_LFCLKSRC      {.source        = NRF_CLOCK_LF_SRC_RC,            \
+                                 .rc_ctiv       = 16,                             \
+                                 .rc_temp_ctiv  = 2,                              \
                                  .xtal_accuracy = NRF_CLOCK_LF_XTAL_ACCURACY_20_PPM}

@@ -21,14 +21,14 @@ const nrf_drv_rtc_t rtc_timestamp = NRF_DRV_RTC_INSTANCE(0);
 #define RTS_PIN_NUMBER 22
 #define HWFC           false
 
-#define TX_PAYLOAD_LENGTH 3 ///< 3 byte payload length
+#define TX_PAYLOAD_LENGTH 4 ///< 4 byte payload length
 
 #define LEFT_PIPE 0
 #define RIGHT_PIPE 1
 
 static uint8_t payload[2][NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH];
 static uint8_t ack_payload[TX_PAYLOAD_LENGTH];                        ///< Payload to attach to ACK sent to device.
-static uint8_t data_buffer[10];
+static uint8_t data_buffer[8];
 
 static bool packet_received_left, packet_received_right;
 
@@ -49,34 +49,10 @@ void receive_left()
     if (packet_received_left)
     {
         packet_received_left = false;
-
-        data_buffer[0] = ((payload[LEFT_PIPE][0] & 1<<3) ? 1:0) << 0 |
-                         ((payload[LEFT_PIPE][0] & 1<<4) ? 1:0) << 1 |
-                         ((payload[LEFT_PIPE][0] & 1<<5) ? 1:0) << 2 |
-                         ((payload[LEFT_PIPE][0] & 1<<6) ? 1:0) << 3 |
-                         ((payload[LEFT_PIPE][0] & 1<<7) ? 1:0) << 4;
-
-        data_buffer[2] = ((payload[LEFT_PIPE][1] & 1<<6) ? 1:0) << 0 |
-                         ((payload[LEFT_PIPE][1] & 1<<7) ? 1:0) << 1 |
-                         ((payload[LEFT_PIPE][0] & 1<<0) ? 1:0) << 2 |
-                         ((payload[LEFT_PIPE][0] & 1<<1) ? 1:0) << 3 |
-                         ((payload[LEFT_PIPE][0] & 1<<2) ? 1:0) << 4;
-
-        data_buffer[4] = ((payload[LEFT_PIPE][1] & 1<<1) ? 1:0) << 0 |
-                         ((payload[LEFT_PIPE][1] & 1<<2) ? 1:0) << 1 |
-                         ((payload[LEFT_PIPE][1] & 1<<3) ? 1:0) << 2 |
-                         ((payload[LEFT_PIPE][1] & 1<<4) ? 1:0) << 3 |
-                         ((payload[LEFT_PIPE][1] & 1<<5) ? 1:0) << 4;
-
-        data_buffer[6] = ((payload[LEFT_PIPE][2] & 1<<5) ? 1:0) << 1 |
-                         ((payload[LEFT_PIPE][2] & 1<<6) ? 1:0) << 2 |
-                         ((payload[LEFT_PIPE][2] & 1<<7) ? 1:0) << 3 |
-                         ((payload[LEFT_PIPE][1] & 1<<0) ? 1:0) << 4;
-
-        data_buffer[8] = ((payload[LEFT_PIPE][2] & 1<<1) ? 1:0) << 1 |
-                         ((payload[LEFT_PIPE][2] & 1<<2) ? 1:0) << 2 |
-                         ((payload[LEFT_PIPE][2] & 1<<3) ? 1:0) << 3 |
-                         ((payload[LEFT_PIPE][2] & 1<<4) ? 1:0) << 4;
+        data_buffer[0] = payload[LEFT_PIPE][0];
+        data_buffer[2] = payload[LEFT_PIPE][1];
+        data_buffer[4] = payload[LEFT_PIPE][2];
+        data_buffer[6] = payload[LEFT_PIPE][3];
     }
 }
 
@@ -85,34 +61,10 @@ void receive_right()
     if (packet_received_right)
     {
         packet_received_right = false;
-
-        data_buffer[1] = ((payload[RIGHT_PIPE][0] & 1<<7) ? 1:0) << 0 |
-                         ((payload[RIGHT_PIPE][0] & 1<<6) ? 1:0) << 1 |
-                         ((payload[RIGHT_PIPE][0] & 1<<5) ? 1:0) << 2 |
-                         ((payload[RIGHT_PIPE][0] & 1<<4) ? 1:0) << 3 |
-                         ((payload[RIGHT_PIPE][0] & 1<<3) ? 1:0) << 4;
-
-        data_buffer[3] = ((payload[RIGHT_PIPE][0] & 1<<2) ? 1:0) << 0 |
-                         ((payload[RIGHT_PIPE][0] & 1<<1) ? 1:0) << 1 |
-                         ((payload[RIGHT_PIPE][0] & 1<<0) ? 1:0) << 2 |
-                         ((payload[RIGHT_PIPE][1] & 1<<7) ? 1:0) << 3 |
-                         ((payload[RIGHT_PIPE][1] & 1<<6) ? 1:0) << 4;
-
-        data_buffer[5] = ((payload[RIGHT_PIPE][1] & 1<<5) ? 1:0) << 0 |
-                         ((payload[RIGHT_PIPE][1] & 1<<4) ? 1:0) << 1 |
-                         ((payload[RIGHT_PIPE][1] & 1<<3) ? 1:0) << 2 |
-                         ((payload[RIGHT_PIPE][1] & 1<<2) ? 1:0) << 3 |
-                         ((payload[RIGHT_PIPE][1] & 1<<1) ? 1:0) << 4;
-
-        data_buffer[7] = ((payload[RIGHT_PIPE][1] & 1<<0) ? 1:0) << 0 |
-                         ((payload[RIGHT_PIPE][2] & 1<<7) ? 1:0) << 1 |
-                         ((payload[RIGHT_PIPE][2] & 1<<6) ? 1:0) << 2 |
-                         ((payload[RIGHT_PIPE][2] & 1<<5) ? 1:0) << 3;
-
-        data_buffer[9] = ((payload[RIGHT_PIPE][2] & 1<<4) ? 1:0) << 0 |
-                         ((payload[RIGHT_PIPE][2] & 1<<3) ? 1:0) << 1 |
-                         ((payload[RIGHT_PIPE][2] & 1<<2) ? 1:0) << 2 |
-                         ((payload[RIGHT_PIPE][2] & 1<<1) ? 1:0) << 3;
+        data_buffer[1] = payload[RIGHT_PIPE][0];
+        data_buffer[3] = payload[RIGHT_PIPE][1];
+        data_buffer[5] = payload[RIGHT_PIPE][2];
+        data_buffer[7] = payload[RIGHT_PIPE][3];
     }
 }
 
@@ -122,7 +74,7 @@ void update_QMK()
     if (app_uart_get(&c) == NRF_SUCCESS && c == 's')
     {
         // sending data to QMK, and an end byte
-        nrf_drv_uart_tx(data_buffer, 10);
+        nrf_drv_uart_tx(data_buffer, TX_PAYLOAD_LENGTH * 2);
         app_uart_put(0xE0);
     }
     // allowing UART buffers to clear
@@ -188,18 +140,14 @@ int main(void)
         {
             data_buffer[0] =
             data_buffer[2] =
-            data_buffer[4] =
-            data_buffer[6] =
-            data_buffer[8] = 0;
+            data_buffer[4] = 0;
         }
 
         if ((timestamp - right_timestamp) > 12)
         {
             data_buffer[1] =
             data_buffer[3] =
-            data_buffer[5] =
-            data_buffer[7] =
-            data_buffer[9] = 0;
+            data_buffer[5] = 0;
         }
     }
 }
