@@ -9,17 +9,22 @@
 #include "nrf_drv_clock.h"
 #include "nrf_drv_rtc.h"
 
-
 /*****************************************************************************/
 /** Configuration */
 /*****************************************************************************/
-const nrf_drv_rtc_t rtc_debounce = NRF_DRV_RTC_INSTANCE(0);
+#define ADDRESS_PIPE0 0x01020304 //< Device unique address for data pipe 0
+#define ADDRESS_PIPE1 0x05060708 //< Device unique address for data pipe 1
+#define MAX_TX_ATTEMPTS 10 //< Number of maximum attempts to send a packet
+#define TX_POWER NRF_GZLL_TX_POWER_4_DBM //< Transmission power (0db is the default)
+#define MAINTENANCE_TX_INTERVAL_MS 125 //< Resending interval after a transmission fail [ms]
+#define TIMEOUT_TO_SLEEP_MS 500 //< Sleeps when no activity exists for this timeout [ms]
+#define SYNC_LIFETIME_MS 100 //< Timeout for tracking host frequency hopping [ms]
 
-// Define payload length
-#define TX_PAYLOAD_LENGTH 4 ///< 4 byte payload length when transmitting
-// Data and acknowledgement payloads
-static uint8_t data_payload[TX_PAYLOAD_LENGTH];                ///< Payload to send to Host. 
-static uint8_t ack_payload[NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH]; ///< Placeholder for received ACK payloads from Host.
+/*****************************************************************************/
+/** Main Implementations */
+/*****************************************************************************/
+
+const nrf_drv_rtc_t rtc_debounce = NRF_DRV_RTC_INSTANCE(0);
 
 // Setup switch pins with pullups
 static void gpio_config(void)
@@ -55,8 +60,9 @@ static void gpio_config(void)
     nrf_gpio_cfg_sense_input(S29, NRF_GPIO_PIN_PULLUP, NRF_GPIO_PIN_SENSE_LOW);
     nrf_gpio_cfg_sense_input(S30, NRF_GPIO_PIN_PULLUP, NRF_GPIO_PIN_SENSE_LOW);
 
+    // We have LED on the board, but do not use it.
     nrf_gpio_cfg_output(LED);
-    nrf_gpio_pin_set(LED);
+    nrf_gpio_pin_clear(LED);       
 }
 
 // Return the key states, masked with valid key pins
@@ -68,6 +74,8 @@ static uint32_t read_keys(void)
 // Assemble packet and send to receiver
 static void send(uint32_t keys)
 {
+    uint8_t data_payload[4]; 
+
     data_payload[0] = ((keys & 1<<S01) ? 1:0) << 0 | \
                       ((keys & 1<<S02) ? 1:0) << 1 | \
                       ((keys & 1<<S03) ? 1:0) << 2 | \
@@ -104,34 +112,53 @@ static void send(uint32_t keys)
                                             0 << 6 | \
                                             0 << 7;
 
-    nrf_gzll_add_packet_to_tx_fifo(PIPE_NUMBER, data_payload, TX_PAYLOAD_LENGTH);
+    nrf_gzll_add_packet_to_tx_fifo(PIPE_NUMBER, data_payload, 4);
 }
 
 extern uint32_t debounce(uint32_t previous_state, uint32_t snapshot);
 
-// 1000Hz debounce sampling 
+// Tick counters for handler
+uint32_t ticks = 0; 
+uint32_t remote_ticks = 0;
 uint32_t remote_state = 0;
-uint32_t ticks = 0; // This will not overflow virtually 
-uint32_t timestamp = 0;
-uint32_t remote_timestamp = 0;
+uint32_t last_activity_ticks = 0;
+bool need_maintenance = false;
 static void handler_debounce(nrf_drv_rtc_int_type_t int_type)
 {
     uint32_t snapshot = read_keys();
     uint32_t state = debounce(remote_state, snapshot);
-    timestamp = ++ticks / 1000;
 
-    // Send if key changed or every 10 sec
-    if ((state != remote_state) || (timestamp - remote_timestamp) > 10)
+    ++ticks;
+    if (snapshot != 0)
+        last_activity_ticks = ticks;
+
+    // Timeout to sleep
+    if (ticks - last_activity_ticks > TIMEOUT_TO_SLEEP_MS)
+    {
+        nrf_drv_rtc_disable(&rtc_debounce);
+        return;
+    }
+
+    // Send if key state changes 
+    if (state != remote_state)
     {
         send(state);
         remote_state = state;
-        remote_timestamp = timestamp;
+        remote_ticks = ticks;
+        return;
+    }
+
+    // If transmission failed before, send a packet again
+    if (need_maintenance && ticks - remote_ticks > MAINTENANCE_TX_INTERVAL_MS)
+    {
+        send(state);
+        remote_state = state;
+        remote_ticks = ticks;
+        return;
     }
 }
 
-bool sleep = false;
-
-int main()
+int main(void)
 {
     // Configure all keys as inputs with pullups
     gpio_config();
@@ -139,14 +166,22 @@ int main()
     // Initialize Gazell
     nrf_gzll_init(NRF_GZLL_MODE_DEVICE);
 
-    // Attempt sending every packet up to 10 times    
-    nrf_gzll_set_max_tx_attempts(10);
-    // Set antenna at 4 dbm
-    nrf_gzll_set_tx_power(NRF_GZLL_TX_POWER_4_DBM);
+    // Set max attempts of sending packets
+    _Static_assert(MAX_TX_ATTEMPTS >= NRF_GZLL_DEFAULT_CHANNEL_TABLE_SIZE * NRF_GZLL_DEFAULT_TIMESLOTS_PER_CHANNEL,
+        "Retry count is too small to establish synchronization.");
+    nrf_gzll_set_max_tx_attempts(MAX_TX_ATTEMPTS);
+
+    // Set TX power
+    nrf_gzll_set_tx_power(TX_POWER);
+
+    // Modify frequency hopping synchronization lifetime to reduce retry count
+    nrf_gzll_set_sync_lifetime(SYNC_LIFETIME_MS * 1000 / NRF_GZLL_DEFAULT_TIMESLOT_PERIOD);
+    nrf_gzll_set_timeslots_per_channel_when_device_out_of_sync(NRF_GZLL_DEFAULT_CHANNEL_TABLE_SIZE * NRF_GZLL_DEFAULT_TIMESLOTS_PER_CHANNEL);
 
     // Addressing
-    nrf_gzll_set_base_address_0(0x01020304);
-    nrf_gzll_set_base_address_1(0x05060708);
+    nrf_gzll_set_base_address_0(ADDRESS_PIPE0);
+    nrf_gzll_set_base_address_1(ADDRESS_PIPE1);
+
     // Enable Gazell to start sending over the air
     nrf_gzll_enable();
 
@@ -162,33 +197,22 @@ int main()
     NRF_GPIOTE->INTENSET = GPIOTE_INTENSET_PORT_Msk;
     NVIC_EnableIRQ(GPIOTE_IRQn);
 
-    // Dim LED if iniialization complete
-    nrf_gpio_pin_clear(LED);       
-
-    while (1)
-    {
-        __WFE();
-        __SEV();
-        __WFE();
-
-        if (sleep)
-        {
-            nrf_drv_rtc_disable(&rtc_debounce);
-        }
-        else
-        {
-            nrf_drv_rtc_enable(&rtc_debounce);
-        }
-    }
+    while (true)
+        __WFI();
 }
 
-// This handler will be run after wakeup from system ON (GPIO wakeup)
+/*****************************************************************************/
+/** IRQ callback function definitions  */
+/*****************************************************************************/
+
 void GPIOTE_IRQHandler(void)
 {
     if (NRF_GPIOTE->EVENTS_PORT)
     {
         NRF_GPIOTE->EVENTS_PORT = 0;
-        sleep = false;
+
+        // Wakeup from sleep when a key is pressed
+        nrf_drv_rtc_enable(&rtc_debounce);
     }
 }
 
@@ -198,25 +222,25 @@ void GPIOTE_IRQHandler(void)
 
 void  nrf_gzll_device_tx_success(uint32_t pipe, nrf_gzll_device_tx_info_t tx_info)
 {
-    uint32_t ack_payload_length = NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH;    
+    uint8_t ack_payload[NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH];
 
     if (tx_info.payload_received_in_ack)
     {
         // Pop packet and write first byte of the payload to the GPIO port.
+        uint32_t ack_payload_length = NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH;    
         nrf_gzll_fetch_packet_from_rx_fifo(pipe, ack_payload, &ack_payload_length);
 
-        if ((0 == remote_state))
-        {
-            sleep = true;
-        }
+        // Clear maintenance flag if transmission succeeded
+        need_maintenance = false;
     }
 }
 
 void nrf_gzll_device_tx_failed(uint32_t pipe, nrf_gzll_device_tx_info_t tx_info)
 {
+    // If data transmission failed, set maitenance flag
+    need_maintenance = true;
 }
 
-// Callbacks not needed
 void nrf_gzll_host_rx_data_ready(uint32_t pipe, nrf_gzll_host_rx_info_t rx_info)
 {
 }

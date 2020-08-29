@@ -41,7 +41,7 @@ Archive member included to satisfy reference by file (symbol)
 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
                               /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o) (__gnu_thumb1_case_uqi)
 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
-                              _build/main.o (__aeabi_uidiv)
+                              /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_channel_manager.o) (__aeabi_uidiv)
 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
                               /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o) (__aeabi_idiv0)
 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
@@ -726,7 +726,7 @@ RAM              0x0000000020000000 0x0000000000004000 xrw
 Linker script and memory map
 
 
-.text           0x0000000000000000     0x3c98
+.text           0x0000000000000000     0x3c94
  *(.isr_vector)
  .isr_vector    0x0000000000000000       0xc0 _build/gcc_startup_nrf51.o
                 0x0000000000000000                __isr_vector
@@ -758,306 +758,307 @@ Linker script and memory map
  .text.SystemInit
                 0x0000000000000444       0xec _build/system_nrf51.o
                 0x0000000000000444                SystemInit
+ .text.send     0x0000000000000530      0x11c _build/main.o
  .text.handler_debounce
-                0x0000000000000530      0x194 _build/main.o
+                0x000000000000064c       0x94 _build/main.o
  .text.startup.main
-                0x00000000000006c4      0x164 _build/main.o
-                0x00000000000006c4                main
+                0x00000000000006e0      0x14c _build/main.o
+                0x00000000000006e0                main
  .text.GPIOTE_IRQHandler
-                0x0000000000000828       0x20 _build/main.o
-                0x0000000000000828                GPIOTE_IRQHandler
+                0x000000000000082c       0x24 _build/main.o
+                0x000000000000082c                GPIOTE_IRQHandler
  .text.nrf_gzll_device_tx_success
-                0x0000000000000848       0x38 _build/main.o
-                0x0000000000000848                nrf_gzll_device_tx_success
+                0x0000000000000850       0x24 _build/main.o
+                0x0000000000000850                nrf_gzll_device_tx_success
  .text.nrf_gzll_device_tx_failed
-                0x0000000000000880        0x8 _build/main.o
-                0x0000000000000880                nrf_gzll_device_tx_failed
+                0x0000000000000874       0x10 _build/main.o
+                0x0000000000000874                nrf_gzll_device_tx_failed
  .text.nrf_gzll_host_rx_data_ready
-                0x0000000000000888        0x8 _build/main.o
-                0x0000000000000888                nrf_gzll_host_rx_data_ready
+                0x0000000000000884        0x8 _build/main.o
+                0x0000000000000884                nrf_gzll_host_rx_data_ready
  .text.nrf_gzll_disabled
-                0x0000000000000890        0x4 _build/main.o
-                0x0000000000000890                nrf_gzll_disabled
+                0x000000000000088c        0x4 _build/main.o
+                0x000000000000088c                nrf_gzll_disabled
  .text.debounce
-                0x0000000000000894       0x48 _build/debounce.o
-                0x0000000000000894                debounce
+                0x0000000000000890       0x48 _build/debounce.o
+                0x0000000000000890                debounce
  .text.nrf_drv_clock_init
-                0x00000000000008dc       0x40 _build/nrf_drv_clock.o
-                0x00000000000008dc                nrf_drv_clock_init
+                0x00000000000008d8       0x40 _build/nrf_drv_clock.o
+                0x00000000000008d8                nrf_drv_clock_init
  .text.nrf_drv_clock_lfclk_request
-                0x000000000000091c       0x60 _build/nrf_drv_clock.o
-                0x000000000000091c                nrf_drv_clock_lfclk_request
+                0x0000000000000918       0x60 _build/nrf_drv_clock.o
+                0x0000000000000918                nrf_drv_clock_lfclk_request
  .text.POWER_CLOCK_IRQHandler
-                0x000000000000097c      0x14c _build/nrf_drv_clock.o
-                0x000000000000097c                POWER_CLOCK_IRQHandler
+                0x0000000000000978      0x14c _build/nrf_drv_clock.o
+                0x0000000000000978                POWER_CLOCK_IRQHandler
  .text.app_util_critical_region_enter
-                0x0000000000000ac8       0x10 _build/app_util_platform.o
-                0x0000000000000ac8                app_util_critical_region_enter
+                0x0000000000000ac4       0x10 _build/app_util_platform.o
+                0x0000000000000ac4                app_util_critical_region_enter
  .text.app_util_critical_region_exit
-                0x0000000000000ad8       0x14 _build/app_util_platform.o
-                0x0000000000000ad8                app_util_critical_region_exit
+                0x0000000000000ad4       0x14 _build/app_util_platform.o
+                0x0000000000000ad4                app_util_critical_region_exit
  .text.nrf_drv_common_irq_enable
-                0x0000000000000aec       0x80 _build/nrf_drv_common.o
-                0x0000000000000aec                nrf_drv_common_irq_enable
+                0x0000000000000ae8       0x80 _build/nrf_drv_common.o
+                0x0000000000000ae8                nrf_drv_common_irq_enable
  .text.nrf_drv_rtc_init
-                0x0000000000000b6c       0x6c _build/nrf_drv_rtc.o
-                0x0000000000000b6c                nrf_drv_rtc_init
+                0x0000000000000b68       0x6c _build/nrf_drv_rtc.o
+                0x0000000000000b68                nrf_drv_rtc_init
  .text.nrf_drv_rtc_enable
-                0x0000000000000bd8       0x18 _build/nrf_drv_rtc.o
-                0x0000000000000bd8                nrf_drv_rtc_enable
+                0x0000000000000bd4       0x18 _build/nrf_drv_rtc.o
+                0x0000000000000bd4                nrf_drv_rtc_enable
  .text.nrf_drv_rtc_disable
-                0x0000000000000bf0       0x18 _build/nrf_drv_rtc.o
-                0x0000000000000bf0                nrf_drv_rtc_disable
+                0x0000000000000bec       0x18 _build/nrf_drv_rtc.o
+                0x0000000000000bec                nrf_drv_rtc_disable
  .text.nrf_drv_rtc_tick_enable
-                0x0000000000000c08       0x24 _build/nrf_drv_rtc.o
-                0x0000000000000c08                nrf_drv_rtc_tick_enable
+                0x0000000000000c04       0x24 _build/nrf_drv_rtc.o
+                0x0000000000000c04                nrf_drv_rtc_tick_enable
  .text.RTC0_IRQHandler
-                0x0000000000000c2c      0x124 _build/nrf_drv_rtc.o
-                0x0000000000000c2c                RTC0_IRQHandler
- .text          0x0000000000000d50       0x4c _build/gcc_startup_nrf51.o
-                0x0000000000000d50                Reset_Handler
-                0x0000000000000d90                NMI_Handler
-                0x0000000000000d92                HardFault_Handler
-                0x0000000000000d94                SVC_Handler
-                0x0000000000000d96                PendSV_Handler
-                0x0000000000000d98                SysTick_Handler
-                0x0000000000000d9a                SPI0_TWI0_IRQHandler
-                0x0000000000000d9a                LPCOMP_IRQHandler
-                0x0000000000000d9a                SWI4_IRQHandler
-                0x0000000000000d9a                TEMP_IRQHandler
-                0x0000000000000d9a                QDEC_IRQHandler
-                0x0000000000000d9a                UART0_IRQHandler
-                0x0000000000000d9a                SWI5_IRQHandler
-                0x0000000000000d9a                TIMER0_IRQHandler
-                0x0000000000000d9a                TIMER1_IRQHandler
-                0x0000000000000d9a                ECB_IRQHandler
-                0x0000000000000d9a                Default_Handler
-                0x0000000000000d9a                ADC_IRQHandler
-                0x0000000000000d9a                SWI3_IRQHandler
-                0x0000000000000d9a                CCM_AAR_IRQHandler
-                0x0000000000000d9a                WDT_IRQHandler
-                0x0000000000000d9a                SWI2_IRQHandler
-                0x0000000000000d9a                RNG_IRQHandler
-                0x0000000000000d9a                SPI1_TWI1_IRQHandler
-                0x0000000000000d9a                RTC1_IRQHandler
-                0x0000000000000d9a                SWI1_IRQHandler
- .text          0x0000000000000d9c      0x864 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
-                0x0000000000000d9c                nrf_gzll_enable
-                0x0000000000000dc0                nrf_gzll_is_enabled
-                0x0000000000000dcc                nrf_gzll_disable
-                0x0000000000000de2                nrf_gzll_add_packet_to_tx_fifo
-                0x0000000000000e68                nrf_gzll_fetch_packet_from_rx_fifo
-                0x0000000000000ed8                nrf_gzll_get_tx_fifo_packet_count
-                0x0000000000000ef4                nrf_gzll_get_rx_fifo_packet_count
-                0x0000000000000f10                nrf_gzll_get_total_allocated_packet_count
-                0x0000000000000f1c                nrf_gzll_ok_to_add_packet_to_tx_fifo
-                0x0000000000000f58                nrf_gzll_flush_tx_fifo
-                0x0000000000000f8c                nrf_gzll_flush_rx_fifo
-                0x0000000000000fac                nrf_gzll_set_mode
-                0x0000000000000fdc                nrf_gzll_get_mode
-                0x0000000000001008                nrf_gzll_set_channel_table
-                0x0000000000001064                nrf_gzll_get_channel_table
-                0x00000000000010a0                nrf_gzll_get_channel_table_size
-                0x00000000000010ac                nrf_gzll_set_base_address_0
-                0x00000000000010d4                nrf_gzll_get_base_address_0
-                0x00000000000010dc                nrf_gzll_set_base_address_1
-                0x0000000000001104                nrf_gzll_get_base_address_1
-                0x000000000000110c                nrf_gzll_set_address_prefix_byte
-                0x0000000000001140                nrf_gzll_get_address_prefix_byte
-                0x0000000000001168                nrf_gzll_set_rx_pipes_enabled
-                0x0000000000001190                nrf_gzll_get_rx_pipes_enabled
-                0x0000000000001198                nrf_gzll_set_datarate
-                0x00000000000011dc                nrf_gzll_get_datarate
-                0x00000000000011f4                nrf_gzll_set_tx_power
-                0x000000000000124c                nrf_gzll_get_tx_power
-                0x000000000000128a                nrf_gzll_set_timeslot_period
-                0x00000000000012b0                nrf_gzll_get_timeslot_period
-                0x00000000000012b8                nrf_gzll_set_sync_lifetime
-                0x00000000000012e0                nrf_gzll_get_sync_lifetime
-                0x00000000000012e8                nrf_gzll_set_timeslots_per_channel_when_device_out_of_sync
-                0x0000000000001310                nrf_gzll_get_timeslots_per_channel_when_device_out_of_sync
-                0x0000000000001318                nrf_gzll_set_timeslots_per_channel
-                0x0000000000001340                nrf_gzll_get_timeslots_per_channel
-                0x0000000000001348                nrf_gzll_set_max_tx_attempts
-                0x0000000000001370                nrf_gzll_get_max_tx_attempts
-                0x0000000000001378                nrf_gzll_set_device_channel_selection_policy
-                0x00000000000013b0                nrf_gzll_get_device_channel_selection_policy
-                0x00000000000013be                nrf_gzll_set_xosc_ctl
-                0x00000000000013f4                nrf_gzll_init
-                0x0000000000001480                nrf_gzll_get_xosc_ctl
-                0x000000000000148e                nrf_gzll_clear_tick_count
-                0x000000000000149c                nrf_gzll_get_tick_count
-                0x00000000000014a8                nrf_gzll_set_auto_disable
-                0x00000000000014c0                nrf_gzll_get_error_code
-                0x00000000000014cc                nrf_gzll_reset_error_code
-                0x00000000000014d8                nrf_gzll_get_internal_debug_code
-                0x00000000000014e4                nrf_gzll_reset_internal_debug_code
-                0x00000000000014f0                nrf_gzll_mode_changed
-                0x00000000000014f2                notification_cb
-                0x00000000000015ec                nrf_assert_internal_callback
- .text          0x0000000000001600     0x119c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_impala.o)
-                0x00000000000019c8                nrf_gpio_debug_pin_write
-                0x00000000000019ca                nrf_impl_disable
-                0x00000000000019f4                nrf_impl_is_disabled
-                0x0000000000001a04                nrf_impl_get_mode
-                0x0000000000001a10                nrf_impl_reserve_packet
-                0x0000000000001a24                nrf_impl_free_packet
-                0x0000000000001a38                nrf_impl_put_tx_fifo
-                0x0000000000001a70                nrf_impl_pop_rx_fifo
-                0x0000000000001a84                nrf_impl_read_rx_fifo
-                0x0000000000001a8c                nrf_impl_read_tx_fifo
-                0x0000000000001aa0                nrf_impl_get_tx_fifo_status
-                0x0000000000001aa8                nrf_impl_get_rx_fifo_status
-                0x0000000000001ab0                nrf_impl_get_available_fifo_packets
-                0x0000000000001ab8                nrf_impl_flush_tx_fifo
-                0x0000000000001aec                nrf_impl_flush_rx_fifo
-                0x0000000000001b00                nrf_impl_set_pipe_0_base_address
-                0x0000000000001b20                nrf_impl_get_pipe_0_base_address
-                0x0000000000001b2c                nrf_impl_set_pipes_1_to_7_base_address
-                0x0000000000001b48                nrf_impl_get_pipes_1_to_7_base_address
-                0x0000000000001b54                nrf_impl_set_prefix_byte
-                0x0000000000001bac                nrf_impl_get_prefix_byte
-                0x0000000000001bcc                nrf_impl_set_channel_table
-                0x0000000000001c00                nrf_impl_set_sync_lifetime
-                0x0000000000001c0c                nrf_impl_get_sync_lifetime
-                0x0000000000001c18                nrf_impl_set_base_address_length
-                0x0000000000001c40                nrf_impl_get_base_address_length
-                0x0000000000001c4c                nrf_impl_set_rx_pipes_enabled
-                0x0000000000001c58                nrf_impl_get_rx_pipes_enabled
-                0x0000000000001c64                nrf_impl_set_timeslot_period
-                0x0000000000001c70                nrf_impl_get_timeslot_period
-                0x0000000000001c7c                nrf_impl_set_timeslots_per_channel_when_in_sync
-                0x0000000000001c8c                nrf_impl_get_timeslots_per_channel_when_in_sync
-                0x0000000000001c98                nrf_impl_set_timeslots_per_channel_when_out_of_sync
-                0x0000000000001ca8                nrf_impl_get_timeslots_per_channel_when_out_of_sync
-                0x0000000000001cb4                nrf_impl_set_max_allowed_tx_attempts
-                0x0000000000001cc0                nrf_impl_get_max_allowed_tx_attempts
-                0x0000000000001ccc                nrf_impl_set_tx_power
-                0x0000000000001ce8                nrf_impl_get_tx_power
-                0x0000000000001cf4                nrf_impl_set_crc_length
-                0x0000000000001d7c                nrf_impl_get_crc_length
-                0x0000000000001d88                nrf_impl_set_datarate
-                0x0000000000002014                nrf_impl_set_mode
-                0x0000000000002044                nrf_impl_enable
-                0x00000000000020a4                nrf_impl_init
-                0x0000000000002228                nrf_impl_get_datarate
-                0x0000000000002234                nrf_impl_enable_rssi
-                0x0000000000002258                nrf_impl_set_channel_selection_policy
-                0x0000000000002264                nrf_impl_get_channel_selection_policy
-                0x0000000000002270                nrf_impl_set_idle_activity_config
-                0x000000000000227c                nrf_impl_get_idle_activity_config
-                0x0000000000002288                nrf_impl_set_xosc_ctl
-                0x0000000000002294                nrf_impl_get_xosc_ctl
-                0x00000000000022a0                nrf_impl_set_dyn_ack_enable
-                0x00000000000022a8                nrf_impl_state_fun_device_send_packet
-                0x00000000000022ec                async_state_rx_active
-                0x0000000000002320                async_state_rx_enabling
-                0x00000000000023a8                async_state_tx_ack_complete
-                0x00000000000023bc                async_state_packet_received
-                0x000000000000255c                nrf_impl_state_fun_timeslot_start
- .text          0x000000000000279c      0x600 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
-                0x0000000000002970                nrf_lcore_start_operation
-                0x0000000000002a18                nrf_lcore_rx_address_match
-                0x0000000000002a28                nrf_lcore_force_disable
-                0x0000000000002a98                nrf_lcore_init
-                0x0000000000002af0                RADIO_IRQHandler
-                0x0000000000002c98                TESTONLY_current_state_is_legal
-                0x0000000000002cbc                nrf_lcore_prepare_operation
-                0x0000000000002d98                print_lc_debug_info
- .text          0x0000000000002d9c      0x108 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_notification_manager.o)
-                0x0000000000002d9c                nrf_nm_init
-                0x0000000000002dd0                nrf_nm_add
-                0x0000000000002e34                nrf_nm_get_remaining_space_in_notification_queue
-                0x0000000000002e48                SWI0_IRQHandler
- .text          0x0000000000002ea4      0x4d4 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_packet_manager.o)
-                0x0000000000002ed8                nrf_pm_init
-                0x0000000000002f34                nrf_pm_get_ack_payload_pending
-                0x0000000000002f40                nrf_pm_there_is_ptx_packet_to_be_serviced
-                0x0000000000002f4c                nrf_pm_get_current_ptx_pipe
-                0x0000000000002f58                nrf_pm_get_current_ptx_packet
-                0x0000000000002f64                nrf_pm_get_current_ptx_ack_ptr
-                0x0000000000002f70                nrf_pm_start_prx
-                0x0000000000002fbc                nrf_pm_search_for_ptx_pipe_to_service
-                0x000000000000303c                nrf_pm_end_prx
-                0x0000000000003174                nrf_pm_end_ptx
-                0x000000000000320c                nrf_pm_get_state
-                0x0000000000003218                nrf_pm_put_tx_fifo
-                0x000000000000323e                nrf_pm_read_tx_fifo
-                0x0000000000003246                nrf_pm_flush_tx_fifo
-                0x0000000000003256                nrf_pm_get_tx_fifo_status
-                0x000000000000325e                nrf_pm_read_rx_fifo
-                0x0000000000003268                nrf_pm_pop_rx_fifo
-                0x0000000000003272                nrf_pm_flush_rx_fifo
-                0x000000000000327c                nrf_pm_get_rx_fifo_status
-                0x0000000000003286                nrf_pm_start_ptx
-                0x0000000000003344                nrf_pm_reserve_packet
-                0x000000000000334c                nrf_pm_free_packet
-                0x0000000000003354                nrf_pm_get_available_fifo_packets
-                0x000000000000335c                nrf_pm_set_dyn_ack_status
-                0x0000000000003368                nrf_pm_get_dyn_ack_status
-                0x0000000000003374                pm_tx_pipe_to_nrf_fifo_pipe
- .text          0x0000000000003378       0x70 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_state_machine.o)
-                0x0000000000003378                nrf_sm_init
-                0x0000000000003388                nrf_sm_set_next_state
-                0x00000000000033a4                nrf_sm_get_current_state
-                0x00000000000033b0                nrf_sm_get_prev_state
-                0x00000000000033bc                nrf_sm_get_next_state
-                0x00000000000033c8                nrf_sm_execute
- .text          0x00000000000033e8        0x8 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_assert_internal.o)
-                0x00000000000033e8                NRF_ASSERT_INTERNAL_parse_and_forward
- .text          0x00000000000033f0      0x20c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_channel_manager.o)
-                0x00000000000033f0                nrf_chm_init
-                0x0000000000003410                nrf_chm_execute_single_tick
-                0x000000000000343c                nrf_chm_execute_ticks
-                0x00000000000034a0                nrf_chm_ticks_until_channel_switch
-                0x00000000000034b0                nrf_chm_ticks_until_desired_channel
-                0x00000000000034f0                nrf_chm_ticks_until_current_timeslot_in_range
-                0x0000000000003534                nrf_chm_ticks_until_current_timeslot_in_range_on_desired_channel
-                0x0000000000003574                nrf_chm_get_current_channel
-                0x000000000000359c                nrf_chm_set_current_channel_index
-                0x00000000000035c0                nrf_chm_get_current_channel_index
-                0x00000000000035cc                nrf_chm_set_current_timeslot
-                0x00000000000035f0                nrf_chm_get_current_timeslot
- .text          0x00000000000035fc      0x294 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_fifo.o)
-                0x000000000000364c                nrf_fifo_init
-                0x00000000000036a0                nrf_fifo_reserve_packet
-                0x00000000000036dc                nrf_fifo_free_packet
-                0x0000000000003738                nrf_fifo_put_packet
-                0x00000000000037a4                nrf_fifo_pop_packet
-                0x00000000000037f4                nrf_fifo_read_packet
-                0x0000000000003828                nrf_fifo_get_packet_count
-                0x0000000000003848                nrf_fifo_get_available_packet_count
-                0x0000000000003854                nrf_fifo_flush
- .text          0x0000000000003890      0x258 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_flywheel.o)
-                0x0000000000003890                nrf_flw_init
-                0x0000000000003908                nrf_flw_start
-                0x0000000000003920                nrf_flw_stop
-                0x0000000000003958                nrf_flw_get_runstate
-                0x0000000000003964                nrf_flw_task_is_delayed
-                0x0000000000003970                NRF_flw_prepare_call
-                0x0000000000003a6c                nrf_flw_get_ext_capture_task
-                0x0000000000003a74                nrf_flw_get_flw_call_event
-                0x0000000000003a7c                TIMER2_IRQHandler
- .text          0x0000000000003ae8       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
-                0x0000000000003ae8                __gnu_thumb1_case_uqi
- .text          0x0000000000003afc      0x120 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
-                0x0000000000003afc                __udivsi3
-                0x0000000000003afc                __aeabi_uidiv
-                0x0000000000003c08                __aeabi_uidivmod
- .text          0x0000000000003c1c        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
-                0x0000000000003c1c                __aeabi_ldiv0
-                0x0000000000003c1c                __aeabi_idiv0
- .text.memcpy   0x0000000000003c20       0x12 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
-                0x0000000000003c20                memcpy
+                0x0000000000000c28      0x124 _build/nrf_drv_rtc.o
+                0x0000000000000c28                RTC0_IRQHandler
+ .text          0x0000000000000d4c       0x4c _build/gcc_startup_nrf51.o
+                0x0000000000000d4c                Reset_Handler
+                0x0000000000000d8c                NMI_Handler
+                0x0000000000000d8e                HardFault_Handler
+                0x0000000000000d90                SVC_Handler
+                0x0000000000000d92                PendSV_Handler
+                0x0000000000000d94                SysTick_Handler
+                0x0000000000000d96                SPI0_TWI0_IRQHandler
+                0x0000000000000d96                LPCOMP_IRQHandler
+                0x0000000000000d96                SWI4_IRQHandler
+                0x0000000000000d96                TEMP_IRQHandler
+                0x0000000000000d96                QDEC_IRQHandler
+                0x0000000000000d96                UART0_IRQHandler
+                0x0000000000000d96                SWI5_IRQHandler
+                0x0000000000000d96                TIMER0_IRQHandler
+                0x0000000000000d96                TIMER1_IRQHandler
+                0x0000000000000d96                ECB_IRQHandler
+                0x0000000000000d96                Default_Handler
+                0x0000000000000d96                ADC_IRQHandler
+                0x0000000000000d96                SWI3_IRQHandler
+                0x0000000000000d96                CCM_AAR_IRQHandler
+                0x0000000000000d96                WDT_IRQHandler
+                0x0000000000000d96                SWI2_IRQHandler
+                0x0000000000000d96                RNG_IRQHandler
+                0x0000000000000d96                SPI1_TWI1_IRQHandler
+                0x0000000000000d96                RTC1_IRQHandler
+                0x0000000000000d96                SWI1_IRQHandler
+ .text          0x0000000000000d98      0x864 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
+                0x0000000000000d98                nrf_gzll_enable
+                0x0000000000000dbc                nrf_gzll_is_enabled
+                0x0000000000000dc8                nrf_gzll_disable
+                0x0000000000000dde                nrf_gzll_add_packet_to_tx_fifo
+                0x0000000000000e64                nrf_gzll_fetch_packet_from_rx_fifo
+                0x0000000000000ed4                nrf_gzll_get_tx_fifo_packet_count
+                0x0000000000000ef0                nrf_gzll_get_rx_fifo_packet_count
+                0x0000000000000f0c                nrf_gzll_get_total_allocated_packet_count
+                0x0000000000000f18                nrf_gzll_ok_to_add_packet_to_tx_fifo
+                0x0000000000000f54                nrf_gzll_flush_tx_fifo
+                0x0000000000000f88                nrf_gzll_flush_rx_fifo
+                0x0000000000000fa8                nrf_gzll_set_mode
+                0x0000000000000fd8                nrf_gzll_get_mode
+                0x0000000000001004                nrf_gzll_set_channel_table
+                0x0000000000001060                nrf_gzll_get_channel_table
+                0x000000000000109c                nrf_gzll_get_channel_table_size
+                0x00000000000010a8                nrf_gzll_set_base_address_0
+                0x00000000000010d0                nrf_gzll_get_base_address_0
+                0x00000000000010d8                nrf_gzll_set_base_address_1
+                0x0000000000001100                nrf_gzll_get_base_address_1
+                0x0000000000001108                nrf_gzll_set_address_prefix_byte
+                0x000000000000113c                nrf_gzll_get_address_prefix_byte
+                0x0000000000001164                nrf_gzll_set_rx_pipes_enabled
+                0x000000000000118c                nrf_gzll_get_rx_pipes_enabled
+                0x0000000000001194                nrf_gzll_set_datarate
+                0x00000000000011d8                nrf_gzll_get_datarate
+                0x00000000000011f0                nrf_gzll_set_tx_power
+                0x0000000000001248                nrf_gzll_get_tx_power
+                0x0000000000001286                nrf_gzll_set_timeslot_period
+                0x00000000000012ac                nrf_gzll_get_timeslot_period
+                0x00000000000012b4                nrf_gzll_set_sync_lifetime
+                0x00000000000012dc                nrf_gzll_get_sync_lifetime
+                0x00000000000012e4                nrf_gzll_set_timeslots_per_channel_when_device_out_of_sync
+                0x000000000000130c                nrf_gzll_get_timeslots_per_channel_when_device_out_of_sync
+                0x0000000000001314                nrf_gzll_set_timeslots_per_channel
+                0x000000000000133c                nrf_gzll_get_timeslots_per_channel
+                0x0000000000001344                nrf_gzll_set_max_tx_attempts
+                0x000000000000136c                nrf_gzll_get_max_tx_attempts
+                0x0000000000001374                nrf_gzll_set_device_channel_selection_policy
+                0x00000000000013ac                nrf_gzll_get_device_channel_selection_policy
+                0x00000000000013ba                nrf_gzll_set_xosc_ctl
+                0x00000000000013f0                nrf_gzll_init
+                0x000000000000147c                nrf_gzll_get_xosc_ctl
+                0x000000000000148a                nrf_gzll_clear_tick_count
+                0x0000000000001498                nrf_gzll_get_tick_count
+                0x00000000000014a4                nrf_gzll_set_auto_disable
+                0x00000000000014bc                nrf_gzll_get_error_code
+                0x00000000000014c8                nrf_gzll_reset_error_code
+                0x00000000000014d4                nrf_gzll_get_internal_debug_code
+                0x00000000000014e0                nrf_gzll_reset_internal_debug_code
+                0x00000000000014ec                nrf_gzll_mode_changed
+                0x00000000000014ee                notification_cb
+                0x00000000000015e8                nrf_assert_internal_callback
+ .text          0x00000000000015fc     0x119c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_impala.o)
+                0x00000000000019c4                nrf_gpio_debug_pin_write
+                0x00000000000019c6                nrf_impl_disable
+                0x00000000000019f0                nrf_impl_is_disabled
+                0x0000000000001a00                nrf_impl_get_mode
+                0x0000000000001a0c                nrf_impl_reserve_packet
+                0x0000000000001a20                nrf_impl_free_packet
+                0x0000000000001a34                nrf_impl_put_tx_fifo
+                0x0000000000001a6c                nrf_impl_pop_rx_fifo
+                0x0000000000001a80                nrf_impl_read_rx_fifo
+                0x0000000000001a88                nrf_impl_read_tx_fifo
+                0x0000000000001a9c                nrf_impl_get_tx_fifo_status
+                0x0000000000001aa4                nrf_impl_get_rx_fifo_status
+                0x0000000000001aac                nrf_impl_get_available_fifo_packets
+                0x0000000000001ab4                nrf_impl_flush_tx_fifo
+                0x0000000000001ae8                nrf_impl_flush_rx_fifo
+                0x0000000000001afc                nrf_impl_set_pipe_0_base_address
+                0x0000000000001b1c                nrf_impl_get_pipe_0_base_address
+                0x0000000000001b28                nrf_impl_set_pipes_1_to_7_base_address
+                0x0000000000001b44                nrf_impl_get_pipes_1_to_7_base_address
+                0x0000000000001b50                nrf_impl_set_prefix_byte
+                0x0000000000001ba8                nrf_impl_get_prefix_byte
+                0x0000000000001bc8                nrf_impl_set_channel_table
+                0x0000000000001bfc                nrf_impl_set_sync_lifetime
+                0x0000000000001c08                nrf_impl_get_sync_lifetime
+                0x0000000000001c14                nrf_impl_set_base_address_length
+                0x0000000000001c3c                nrf_impl_get_base_address_length
+                0x0000000000001c48                nrf_impl_set_rx_pipes_enabled
+                0x0000000000001c54                nrf_impl_get_rx_pipes_enabled
+                0x0000000000001c60                nrf_impl_set_timeslot_period
+                0x0000000000001c6c                nrf_impl_get_timeslot_period
+                0x0000000000001c78                nrf_impl_set_timeslots_per_channel_when_in_sync
+                0x0000000000001c88                nrf_impl_get_timeslots_per_channel_when_in_sync
+                0x0000000000001c94                nrf_impl_set_timeslots_per_channel_when_out_of_sync
+                0x0000000000001ca4                nrf_impl_get_timeslots_per_channel_when_out_of_sync
+                0x0000000000001cb0                nrf_impl_set_max_allowed_tx_attempts
+                0x0000000000001cbc                nrf_impl_get_max_allowed_tx_attempts
+                0x0000000000001cc8                nrf_impl_set_tx_power
+                0x0000000000001ce4                nrf_impl_get_tx_power
+                0x0000000000001cf0                nrf_impl_set_crc_length
+                0x0000000000001d78                nrf_impl_get_crc_length
+                0x0000000000001d84                nrf_impl_set_datarate
+                0x0000000000002010                nrf_impl_set_mode
+                0x0000000000002040                nrf_impl_enable
+                0x00000000000020a0                nrf_impl_init
+                0x0000000000002224                nrf_impl_get_datarate
+                0x0000000000002230                nrf_impl_enable_rssi
+                0x0000000000002254                nrf_impl_set_channel_selection_policy
+                0x0000000000002260                nrf_impl_get_channel_selection_policy
+                0x000000000000226c                nrf_impl_set_idle_activity_config
+                0x0000000000002278                nrf_impl_get_idle_activity_config
+                0x0000000000002284                nrf_impl_set_xosc_ctl
+                0x0000000000002290                nrf_impl_get_xosc_ctl
+                0x000000000000229c                nrf_impl_set_dyn_ack_enable
+                0x00000000000022a4                nrf_impl_state_fun_device_send_packet
+                0x00000000000022e8                async_state_rx_active
+                0x000000000000231c                async_state_rx_enabling
+                0x00000000000023a4                async_state_tx_ack_complete
+                0x00000000000023b8                async_state_packet_received
+                0x0000000000002558                nrf_impl_state_fun_timeslot_start
+ .text          0x0000000000002798      0x600 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
+                0x000000000000296c                nrf_lcore_start_operation
+                0x0000000000002a14                nrf_lcore_rx_address_match
+                0x0000000000002a24                nrf_lcore_force_disable
+                0x0000000000002a94                nrf_lcore_init
+                0x0000000000002aec                RADIO_IRQHandler
+                0x0000000000002c94                TESTONLY_current_state_is_legal
+                0x0000000000002cb8                nrf_lcore_prepare_operation
+                0x0000000000002d94                print_lc_debug_info
+ .text          0x0000000000002d98      0x108 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_notification_manager.o)
+                0x0000000000002d98                nrf_nm_init
+                0x0000000000002dcc                nrf_nm_add
+                0x0000000000002e30                nrf_nm_get_remaining_space_in_notification_queue
+                0x0000000000002e44                SWI0_IRQHandler
+ .text          0x0000000000002ea0      0x4d4 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_packet_manager.o)
+                0x0000000000002ed4                nrf_pm_init
+                0x0000000000002f30                nrf_pm_get_ack_payload_pending
+                0x0000000000002f3c                nrf_pm_there_is_ptx_packet_to_be_serviced
+                0x0000000000002f48                nrf_pm_get_current_ptx_pipe
+                0x0000000000002f54                nrf_pm_get_current_ptx_packet
+                0x0000000000002f60                nrf_pm_get_current_ptx_ack_ptr
+                0x0000000000002f6c                nrf_pm_start_prx
+                0x0000000000002fb8                nrf_pm_search_for_ptx_pipe_to_service
+                0x0000000000003038                nrf_pm_end_prx
+                0x0000000000003170                nrf_pm_end_ptx
+                0x0000000000003208                nrf_pm_get_state
+                0x0000000000003214                nrf_pm_put_tx_fifo
+                0x000000000000323a                nrf_pm_read_tx_fifo
+                0x0000000000003242                nrf_pm_flush_tx_fifo
+                0x0000000000003252                nrf_pm_get_tx_fifo_status
+                0x000000000000325a                nrf_pm_read_rx_fifo
+                0x0000000000003264                nrf_pm_pop_rx_fifo
+                0x000000000000326e                nrf_pm_flush_rx_fifo
+                0x0000000000003278                nrf_pm_get_rx_fifo_status
+                0x0000000000003282                nrf_pm_start_ptx
+                0x0000000000003340                nrf_pm_reserve_packet
+                0x0000000000003348                nrf_pm_free_packet
+                0x0000000000003350                nrf_pm_get_available_fifo_packets
+                0x0000000000003358                nrf_pm_set_dyn_ack_status
+                0x0000000000003364                nrf_pm_get_dyn_ack_status
+                0x0000000000003370                pm_tx_pipe_to_nrf_fifo_pipe
+ .text          0x0000000000003374       0x70 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_state_machine.o)
+                0x0000000000003374                nrf_sm_init
+                0x0000000000003384                nrf_sm_set_next_state
+                0x00000000000033a0                nrf_sm_get_current_state
+                0x00000000000033ac                nrf_sm_get_prev_state
+                0x00000000000033b8                nrf_sm_get_next_state
+                0x00000000000033c4                nrf_sm_execute
+ .text          0x00000000000033e4        0x8 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_assert_internal.o)
+                0x00000000000033e4                NRF_ASSERT_INTERNAL_parse_and_forward
+ .text          0x00000000000033ec      0x20c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_channel_manager.o)
+                0x00000000000033ec                nrf_chm_init
+                0x000000000000340c                nrf_chm_execute_single_tick
+                0x0000000000003438                nrf_chm_execute_ticks
+                0x000000000000349c                nrf_chm_ticks_until_channel_switch
+                0x00000000000034ac                nrf_chm_ticks_until_desired_channel
+                0x00000000000034ec                nrf_chm_ticks_until_current_timeslot_in_range
+                0x0000000000003530                nrf_chm_ticks_until_current_timeslot_in_range_on_desired_channel
+                0x0000000000003570                nrf_chm_get_current_channel
+                0x0000000000003598                nrf_chm_set_current_channel_index
+                0x00000000000035bc                nrf_chm_get_current_channel_index
+                0x00000000000035c8                nrf_chm_set_current_timeslot
+                0x00000000000035ec                nrf_chm_get_current_timeslot
+ .text          0x00000000000035f8      0x294 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_fifo.o)
+                0x0000000000003648                nrf_fifo_init
+                0x000000000000369c                nrf_fifo_reserve_packet
+                0x00000000000036d8                nrf_fifo_free_packet
+                0x0000000000003734                nrf_fifo_put_packet
+                0x00000000000037a0                nrf_fifo_pop_packet
+                0x00000000000037f0                nrf_fifo_read_packet
+                0x0000000000003824                nrf_fifo_get_packet_count
+                0x0000000000003844                nrf_fifo_get_available_packet_count
+                0x0000000000003850                nrf_fifo_flush
+ .text          0x000000000000388c      0x258 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_flywheel.o)
+                0x000000000000388c                nrf_flw_init
+                0x0000000000003904                nrf_flw_start
+                0x000000000000391c                nrf_flw_stop
+                0x0000000000003954                nrf_flw_get_runstate
+                0x0000000000003960                nrf_flw_task_is_delayed
+                0x000000000000396c                NRF_flw_prepare_call
+                0x0000000000003a68                nrf_flw_get_ext_capture_task
+                0x0000000000003a70                nrf_flw_get_flw_call_event
+                0x0000000000003a78                TIMER2_IRQHandler
+ .text          0x0000000000003ae4       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
+                0x0000000000003ae4                __gnu_thumb1_case_uqi
+ .text          0x0000000000003af8      0x120 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+                0x0000000000003af8                __udivsi3
+                0x0000000000003af8                __aeabi_uidiv
+                0x0000000000003c04                __aeabi_uidivmod
+ .text          0x0000000000003c18        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+                0x0000000000003c18                __aeabi_ldiv0
+                0x0000000000003c18                __aeabi_idiv0
+ .text.memcpy   0x0000000000003c1c       0x12 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+                0x0000000000003c1c                memcpy
  *(.init)
- *fill*         0x0000000000003c32        0x2 
- .init          0x0000000000003c34        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
-                0x0000000000003c34                _init
- .init          0x0000000000003c38        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+ *fill*         0x0000000000003c2e        0x2 
+ .init          0x0000000000003c30        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+                0x0000000000003c30                _init
+ .init          0x0000000000003c34        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
  *(.fini)
- .fini          0x0000000000003c40        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
-                0x0000000000003c40                _fini
- .fini          0x0000000000003c44        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
+ .fini          0x0000000000003c3c        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crti.o
+                0x0000000000003c3c                _fini
+ .fini          0x0000000000003c40        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtn.o
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -1070,51 +1071,51 @@ Linker script and memory map
  *(.dtors)
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000003c4c        0x2 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-impure.o)
- *fill*         0x0000000000003c4e        0x2 
+                0x0000000000003c48        0x2 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-impure.o)
+ *fill*         0x0000000000003c4a        0x2 
  .rodata._global_impure_ptr
-                0x0000000000003c50        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-impure.o)
-                0x0000000000003c50                _global_impure_ptr
+                0x0000000000003c4c        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-impure.o)
+                0x0000000000003c4c                _global_impure_ptr
  .rodata.rtc_debounce
-                0x0000000000003c54        0x8 _build/main.o
-                0x0000000000003c54                rtc_debounce
+                0x0000000000003c50        0x8 _build/main.o
+                0x0000000000003c50                rtc_debounce
  .rodata.m_default_config
-                0x0000000000003c5c        0x6 _build/nrf_drv_rtc.o
- .rodata        0x0000000000003c62        0x2 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
- .rodata        0x0000000000003c64       0x30 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
+                0x0000000000003c58        0x6 _build/nrf_drv_rtc.o
+ .rodata        0x0000000000003c5e        0x2 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
+ .rodata        0x0000000000003c60       0x30 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
  *(.eh_frame*)
- .eh_frame      0x0000000000003c94        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
- .eh_frame      0x0000000000003c94        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
+ .eh_frame      0x0000000000003c90        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+ .eh_frame      0x0000000000003c90        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
 
-.glue_7         0x0000000000003c98        0x0
- .glue_7        0x0000000000003c98        0x0 linker stubs
+.glue_7         0x0000000000003c94        0x0
+ .glue_7        0x0000000000003c94        0x0 linker stubs
 
-.glue_7t        0x0000000000003c98        0x0
- .glue_7t       0x0000000000003c98        0x0 linker stubs
+.glue_7t        0x0000000000003c94        0x0
+ .glue_7t       0x0000000000003c94        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000003c98        0x0
- .vfp11_veneer  0x0000000000003c98        0x0 linker stubs
+.vfp11_veneer   0x0000000000003c94        0x0
+ .vfp11_veneer  0x0000000000003c94        0x0 linker stubs
 
-.v4_bx          0x0000000000003c98        0x0
- .v4_bx         0x0000000000003c98        0x0 linker stubs
+.v4_bx          0x0000000000003c94        0x0
+ .v4_bx         0x0000000000003c94        0x0 linker stubs
 
-.iplt           0x0000000000003c98        0x0
- .iplt          0x0000000000003c98        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+.iplt           0x0000000000003c94        0x0
+ .iplt          0x0000000000003c94        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000000003c98                __exidx_start = .
+                0x0000000000003c94                __exidx_start = .
 
-.ARM.exidx      0x0000000000003c98        0x8
+.ARM.exidx      0x0000000000003c94        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x0000000000003c98        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/crt0.o
-                0x0000000000003ca0                __exidx_end = .
-                0x0000000000003ca0                __etext = .
+ .ARM.exidx     0x0000000000003c94        0x8 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/crt0.o
+                0x0000000000003c9c                __exidx_end = .
+                0x0000000000003c9c                __etext = .
 
-.rel.dyn        0x0000000000003ca0        0x0
- .rel.iplt      0x0000000000003ca0        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
+.rel.dyn        0x0000000000003c9c        0x0
+ .rel.iplt      0x0000000000003c9c        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
 
-.data           0x0000000020000000       0x88 load address 0x0000000000003ca0
+.data           0x0000000020000000       0x88 load address 0x0000000000003c9c
                 0x0000000020000000                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -1177,13 +1178,13 @@ LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libnosy
 END GROUP
 
 .tm_clone_table
-                0x0000000020000088        0x0 load address 0x0000000000003d28
+                0x0000000020000088        0x0 load address 0x0000000000003d24
  .tm_clone_table
                 0x0000000020000088        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
  .tm_clone_table
                 0x0000000020000088        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
 
-.igot.plt       0x0000000020000088        0x0 load address 0x0000000000003d28
+.igot.plt       0x0000000020000088        0x0 load address 0x0000000000003d24
  .igot.plt      0x0000000020000088        0x0 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtbegin.o
 
 .fs_data        0x0000000020000088        0x0
@@ -1191,7 +1192,7 @@ END GROUP
  *(.fs_data)
                 [!provide]                        PROVIDE (__stop_fs_data, .)
 
-.bss            0x0000000020000088      0x504 load address 0x0000000000003d28
+.bss            0x0000000020000088      0x4e0 load address 0x0000000000003d24
                 0x0000000020000088                . = ALIGN (0x4)
                 0x0000000020000088                __bss_start__ = .
  *(.bss*)
@@ -1201,84 +1202,81 @@ END GROUP
  .bss._global_atexit
                 0x0000000020000130        0x4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__call_atexit.o)
                 0x0000000020000130                _global_atexit
- .bss.timestamp
+ .bss.remote_ticks
                 0x0000000020000134        0x4 _build/main.o
-                0x0000000020000134                timestamp
- .bss.sleep     0x0000000020000138        0x1 _build/main.o
-                0x0000000020000138                sleep
- *fill*         0x0000000020000139        0x3 
- .bss.ack_payload
-                0x000000002000013c       0x20 _build/main.o
- .bss.data_payload
-                0x000000002000015c        0x4 _build/main.o
- .bss.ticks     0x0000000020000160        0x4 _build/main.o
-                0x0000000020000160                ticks
+                0x0000000020000134                remote_ticks
+ .bss.ticks     0x0000000020000138        0x4 _build/main.o
+                0x0000000020000138                ticks
  .bss.remote_state
-                0x0000000020000164        0x4 _build/main.o
-                0x0000000020000164                remote_state
- .bss.remote_timestamp
-                0x0000000020000168        0x4 _build/main.o
-                0x0000000020000168                remote_timestamp
+                0x000000002000013c        0x4 _build/main.o
+                0x000000002000013c                remote_state
+ .bss.last_activity_ticks
+                0x0000000020000140        0x4 _build/main.o
+                0x0000000020000140                last_activity_ticks
+ .bss.need_maintenance
+                0x0000000020000144        0x1 _build/main.o
+                0x0000000020000144                need_maintenance
+ *fill*         0x0000000020000145        0x3 
  .bss.head.3678
-                0x000000002000016c        0x4 _build/debounce.o
+                0x0000000020000148        0x4 _build/debounce.o
  .bss.buffer.3677
-                0x0000000020000170       0x14 _build/debounce.o
+                0x000000002000014c       0x14 _build/debounce.o
  .bss.m_clock_cb
-                0x0000000020000184       0x24 _build/nrf_drv_clock.o
+                0x0000000020000160       0x24 _build/nrf_drv_clock.o
  .bss.m_in_critical_region
-                0x00000000200001a8        0x4 _build/app_util_platform.o
+                0x0000000020000184        0x4 _build/app_util_platform.o
  .bss.m_handlers
-                0x00000000200001ac        0x4 _build/nrf_drv_rtc.o
- .bss.m_cb      0x00000000200001b0        0x3 _build/nrf_drv_rtc.o
- *fill*         0x00000000200001b3        0x1 
- .bss           0x00000000200001b4       0x18 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
-                0x00000000200001c8                assert_count
- .bss           0x00000000200001cc       0x10 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_impala.o)
- .bss           0x00000000200001dc        0x4 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
- .bss           0x00000000200001e0        0xc /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_channel_manager.o)
- .bss           0x00000000200001ec        0x8 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_flywheel.o)
+                0x0000000020000188        0x4 _build/nrf_drv_rtc.o
+ .bss.m_cb      0x000000002000018c        0x3 _build/nrf_drv_rtc.o
+ *fill*         0x000000002000018f        0x1 
+ .bss           0x0000000020000190       0x18 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
+                0x00000000200001a4                assert_count
+ .bss           0x00000000200001a8       0x10 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_impala.o)
+ .bss           0x00000000200001b8        0x4 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
+ .bss           0x00000000200001bc        0xc /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_channel_manager.o)
+ .bss           0x00000000200001c8        0x8 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_flywheel.o)
  *(COMMON)
- COMMON         0x00000000200001f4        0x1 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
-                0x00000000200001f4                nrf_gzll_error_code
- *fill*         0x00000000200001f5        0x3 
- COMMON         0x00000000200001f8       0x6c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_impala.o)
-                0x00000000200001f8                nrf_impl_status
-                0x0000000020000214                lcore_config
-                0x000000002000022c                impl_async_state
-                0x0000000020000230                impl_internal_params
- COMMON         0x0000000020000264       0x24 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
-                0x0000000020000264                nrf_lcore_status
- COMMON         0x0000000020000288       0x88 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_notification_manager.o)
-                0x0000000020000288                nm_status
- COMMON         0x0000000020000310       0x9c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_packet_manager.o)
-                0x0000000020000310                pm_status
-                0x00000000200003a4                nrf_pm_ack_payload_pending
- COMMON         0x00000000200003ac        0x3 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_state_machine.o)
-                0x00000000200003ac                sm_status
- *fill*         0x00000000200003af        0x1 
- COMMON         0x00000000200003b0      0x1d8 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_fifo.o)
-                0x00000000200003b0                available_packet_count
-                0x00000000200003b4                available_packets
-                0x00000000200003cc                pipe_status
-                0x00000000200003fc                fifo_contents
-                0x00000000200004bc                packet_pool
- COMMON         0x0000000020000588        0x1 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_flywheel.o)
-                0x0000000020000588                runstate
-                0x000000002000058c                . = ALIGN (0x4)
- *fill*         0x0000000020000589        0x3 
-                0x000000002000058c                __bss_end__ = .
+ COMMON         0x00000000200001d0        0x1 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_gzll.o)
+                0x00000000200001d0                nrf_gzll_error_code
+ *fill*         0x00000000200001d1        0x3 
+ COMMON         0x00000000200001d4       0x6c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_impala.o)
+                0x00000000200001d4                nrf_impl_status
+                0x00000000200001f0                lcore_config
+                0x0000000020000208                impl_async_state
+                0x000000002000020c                impl_internal_params
+ COMMON         0x0000000020000240       0x24 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_link_core.o)
+                0x0000000020000240                nrf_lcore_status
+ COMMON         0x0000000020000264       0x88 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_notification_manager.o)
+                0x0000000020000264                nm_status
+ COMMON         0x00000000200002ec       0x9c /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_packet_manager.o)
+                0x00000000200002ec                pm_status
+                0x0000000020000380                nrf_pm_ack_payload_pending
+ COMMON         0x0000000020000388        0x3 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_state_machine.o)
+                0x0000000020000388                sm_status
+ *fill*         0x000000002000038b        0x1 
+ COMMON         0x000000002000038c      0x1d8 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_fifo.o)
+                0x000000002000038c                available_packet_count
+                0x0000000020000390                available_packets
+                0x00000000200003a8                pipe_status
+                0x00000000200003d8                fifo_contents
+                0x0000000020000498                packet_pool
+ COMMON         0x0000000020000564        0x1 /home/mohammedari/nRF5_SDK_11/components/properitary_rf/gzll/gcc/gzll_gcc.a(nrf_flywheel.o)
+                0x0000000020000564                runstate
+                0x0000000020000568                . = ALIGN (0x4)
+ *fill*         0x0000000020000565        0x3 
+                0x0000000020000568                __bss_end__ = .
 
-.heap           0x0000000020000590      0x800
-                0x0000000020000590                __end__ = .
+.heap           0x0000000020000568      0x800
+                0x0000000020000568                __end__ = .
                 [!provide]                        PROVIDE (end, .)
  *(.heap*)
- .heap          0x0000000020000590      0x800 _build/gcc_startup_nrf51.o
-                0x0000000020000590                __HeapBase
-                0x0000000020000d90                __HeapLimit = .
+ .heap          0x0000000020000568      0x800 _build/gcc_startup_nrf51.o
+                0x0000000020000568                __HeapBase
+                0x0000000020000d68                __HeapLimit = .
 
-.stack_dummy    0x0000000020000590      0x800
+.stack_dummy    0x0000000020000568      0x800
  *(.stack*)
- .stack         0x0000000020000590      0x800 _build/gcc_startup_nrf51.o
+ .stack         0x0000000020000568      0x800 _build/gcc_startup_nrf51.o
                 0x0000000020004000                __StackTop = (ORIGIN (RAM) + LENGTH (RAM))
                 0x0000000020003800                __StackLimit = (__StackTop - SIZEOF (.stack_dummy))
                 0x0000000020004000                PROVIDE (__stack, __StackTop)
@@ -1394,7 +1392,7 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .comment       0x00000000000000e0       0x39 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
  .comment       0x00000000000000e0       0x39 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/crtend.o
 
-.debug_line     0x0000000000000000     0x343c
+.debug_line     0x0000000000000000     0x3450
  .debug_line    0x0000000000000000       0x80 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/crt0.o
  .debug_line    0x0000000000000080       0xc3 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-atexit.o)
  .debug_line    0x0000000000000143      0x169 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-exit.o)
@@ -1406,18 +1404,18 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_line    0x0000000000000758      0x172 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__call_atexit.o)
  .debug_line    0x00000000000008ca       0x5d /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
  .debug_line    0x0000000000000927      0x2a3 _build/system_nrf51.o
- .debug_line    0x0000000000000bca      0x84d _build/main.o
- .debug_line    0x0000000000001417      0x15c _build/debounce.o
- .debug_line    0x0000000000001573      0x9ca _build/nrf_drv_clock.o
- .debug_line    0x0000000000001f3d      0x485 _build/app_util_platform.o
- .debug_line    0x00000000000023c2      0x551 _build/nrf_drv_common.o
- .debug_line    0x0000000000002913      0x908 _build/nrf_drv_rtc.o
- .debug_line    0x000000000000321b       0x66 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
- .debug_line    0x0000000000003281       0x6c /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
- .debug_line    0x00000000000032ed       0x5e /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
- .debug_line    0x000000000000334b       0xf1 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+ .debug_line    0x0000000000000bca      0x861 _build/main.o
+ .debug_line    0x000000000000142b      0x15c _build/debounce.o
+ .debug_line    0x0000000000001587      0x9ca _build/nrf_drv_clock.o
+ .debug_line    0x0000000000001f51      0x485 _build/app_util_platform.o
+ .debug_line    0x00000000000023d6      0x551 _build/nrf_drv_common.o
+ .debug_line    0x0000000000002927      0x908 _build/nrf_drv_rtc.o
+ .debug_line    0x000000000000322f       0x66 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
+ .debug_line    0x0000000000003295       0x6c /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+ .debug_line    0x0000000000003301       0x5e /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+ .debug_line    0x000000000000335f       0xf1 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
 
-.debug_info     0x0000000000000000     0x6983
+.debug_info     0x0000000000000000     0x69ad
  .debug_info    0x0000000000000000       0xa8 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/crt0.o
  .debug_info    0x00000000000000a8      0x10a /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-atexit.o)
  .debug_info    0x00000000000001b2      0x7a6 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-exit.o)
@@ -1429,18 +1427,18 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_info    0x0000000000001629      0x242 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__call_atexit.o)
  .debug_info    0x000000000000186b       0x58 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
  .debug_info    0x00000000000018c3      0x1d9 _build/system_nrf51.o
- .debug_info    0x0000000000001a9c     0x1b5e _build/main.o
- .debug_info    0x00000000000035fa      0x133 _build/debounce.o
- .debug_info    0x000000000000372d     0x161f _build/nrf_drv_clock.o
- .debug_info    0x0000000000004d4c      0x1c1 _build/app_util_platform.o
- .debug_info    0x0000000000004f0d      0x42d _build/nrf_drv_common.o
- .debug_info    0x000000000000533a     0x131c _build/nrf_drv_rtc.o
- .debug_info    0x0000000000006656       0xb9 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
- .debug_info    0x000000000000670f       0xb9 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
- .debug_info    0x00000000000067c8       0xb9 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
- .debug_info    0x0000000000006881      0x102 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+ .debug_info    0x0000000000001a9c     0x1b88 _build/main.o
+ .debug_info    0x0000000000003624      0x133 _build/debounce.o
+ .debug_info    0x0000000000003757     0x161f _build/nrf_drv_clock.o
+ .debug_info    0x0000000000004d76      0x1c1 _build/app_util_platform.o
+ .debug_info    0x0000000000004f37      0x42d _build/nrf_drv_common.o
+ .debug_info    0x0000000000005364     0x131c _build/nrf_drv_rtc.o
+ .debug_info    0x0000000000006680       0xb9 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
+ .debug_info    0x0000000000006739       0xb9 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+ .debug_info    0x00000000000067f2       0xb9 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x00000000000068ab      0x102 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
 
-.debug_abbrev   0x0000000000000000     0x187d
+.debug_abbrev   0x0000000000000000     0x1861
  .debug_abbrev  0x0000000000000000       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/crt0.o
  .debug_abbrev  0x0000000000000014       0xb5 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-atexit.o)
  .debug_abbrev  0x00000000000000c9      0x18b /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-exit.o)
@@ -1452,18 +1450,18 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_abbrev  0x000000000000070a      0x16d /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__call_atexit.o)
  .debug_abbrev  0x0000000000000877       0x55 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
  .debug_abbrev  0x00000000000008cc       0xfc _build/system_nrf51.o
- .debug_abbrev  0x00000000000009c8      0x358 _build/main.o
- .debug_abbrev  0x0000000000000d20       0xa9 _build/debounce.o
- .debug_abbrev  0x0000000000000dc9      0x428 _build/nrf_drv_clock.o
- .debug_abbrev  0x00000000000011f1       0xeb _build/app_util_platform.o
- .debug_abbrev  0x00000000000012dc      0x16c _build/nrf_drv_common.o
- .debug_abbrev  0x0000000000001448      0x355 _build/nrf_drv_rtc.o
- .debug_abbrev  0x000000000000179d       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
- .debug_abbrev  0x00000000000017b1       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
- .debug_abbrev  0x00000000000017c5       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
- .debug_abbrev  0x00000000000017d9       0xa4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+ .debug_abbrev  0x00000000000009c8      0x33c _build/main.o
+ .debug_abbrev  0x0000000000000d04       0xa9 _build/debounce.o
+ .debug_abbrev  0x0000000000000dad      0x428 _build/nrf_drv_clock.o
+ .debug_abbrev  0x00000000000011d5       0xeb _build/app_util_platform.o
+ .debug_abbrev  0x00000000000012c0      0x16c _build/nrf_drv_common.o
+ .debug_abbrev  0x000000000000142c      0x355 _build/nrf_drv_rtc.o
+ .debug_abbrev  0x0000000000001781       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
+ .debug_abbrev  0x0000000000001795       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+ .debug_abbrev  0x00000000000017a9       0x14 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+ .debug_abbrev  0x00000000000017bd       0xa4 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
 
-.debug_aranges  0x0000000000000000      0x3a0
+.debug_aranges  0x0000000000000000      0x3a8
  .debug_aranges
                 0x0000000000000000       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/crt0.o
  .debug_aranges
@@ -1487,27 +1485,27 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_aranges
                 0x0000000000000138       0x28 _build/system_nrf51.o
  .debug_aranges
-                0x0000000000000160       0x50 _build/main.o
+                0x0000000000000160       0x58 _build/main.o
  .debug_aranges
-                0x00000000000001b0       0x20 _build/debounce.o
+                0x00000000000001b8       0x20 _build/debounce.o
  .debug_aranges
-                0x00000000000001d0       0x80 _build/nrf_drv_clock.o
+                0x00000000000001d8       0x80 _build/nrf_drv_clock.o
  .debug_aranges
-                0x0000000000000250       0x38 _build/app_util_platform.o
+                0x0000000000000258       0x38 _build/app_util_platform.o
  .debug_aranges
-                0x0000000000000288       0x20 _build/nrf_drv_common.o
+                0x0000000000000290       0x20 _build/nrf_drv_common.o
  .debug_aranges
-                0x00000000000002a8       0x78 _build/nrf_drv_rtc.o
+                0x00000000000002b0       0x78 _build/nrf_drv_rtc.o
  .debug_aranges
-                0x0000000000000320       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
+                0x0000000000000328       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_thumb1_case_uqi.o)
  .debug_aranges
-                0x0000000000000340       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+                0x0000000000000348       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
  .debug_aranges
-                0x0000000000000360       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
+                0x0000000000000368       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_dvmd_tls.o)
  .debug_aranges
-                0x0000000000000380       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+                0x0000000000000388       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
 
-.debug_loc      0x0000000000000000     0x1b38
+.debug_loc      0x0000000000000000     0x1b4e
  .debug_loc     0x0000000000000000       0x2c /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-atexit.o)
  .debug_loc     0x000000000000002c       0x1e /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-exit.o)
  .debug_loc     0x000000000000004a       0x2b /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-fini.o)
@@ -1515,14 +1513,14 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_loc     0x00000000000000b1       0x87 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memset.o)
  .debug_loc     0x0000000000000138      0x198 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__atexit.o)
  .debug_loc     0x00000000000002d0      0x18c /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__call_atexit.o)
- .debug_loc     0x000000000000045c       0x97 _build/main.o
- .debug_loc     0x00000000000004f3      0x1b1 _build/debounce.o
- .debug_loc     0x00000000000006a4      0x4e9 _build/nrf_drv_clock.o
- .debug_loc     0x0000000000000b8d       0xa2 _build/nrf_drv_common.o
- .debug_loc     0x0000000000000c2f      0xe3a _build/nrf_drv_rtc.o
- .debug_loc     0x0000000000001a69       0xcf /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+ .debug_loc     0x000000000000045c       0xad _build/main.o
+ .debug_loc     0x0000000000000509      0x1b1 _build/debounce.o
+ .debug_loc     0x00000000000006ba      0x4e9 _build/nrf_drv_clock.o
+ .debug_loc     0x0000000000000ba3       0xa2 _build/nrf_drv_common.o
+ .debug_loc     0x0000000000000c45      0xe3a _build/nrf_drv_rtc.o
+ .debug_loc     0x0000000000001a7f       0xcf /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
 
-.debug_ranges   0x0000000000000000      0x938
+.debug_ranges   0x0000000000000000      0x920
  .debug_ranges  0x0000000000000000       0x10 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-atexit.o)
  .debug_ranges  0x0000000000000010       0x10 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-exit.o)
  .debug_ranges  0x0000000000000020       0x10 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-fini.o)
@@ -1532,15 +1530,15 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_ranges  0x0000000000000060       0x10 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__call_atexit.o)
  .debug_ranges  0x0000000000000070       0x10 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
  .debug_ranges  0x0000000000000080       0x78 _build/system_nrf51.o
- .debug_ranges  0x00000000000000f8       0xc8 _build/main.o
- .debug_ranges  0x00000000000001c0       0x30 _build/debounce.o
- .debug_ranges  0x00000000000001f0      0x438 _build/nrf_drv_clock.o
- .debug_ranges  0x0000000000000628       0x40 _build/app_util_platform.o
- .debug_ranges  0x0000000000000668       0x28 _build/nrf_drv_common.o
- .debug_ranges  0x0000000000000690      0x298 _build/nrf_drv_rtc.o
- .debug_ranges  0x0000000000000928       0x10 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+ .debug_ranges  0x00000000000000f8       0xb0 _build/main.o
+ .debug_ranges  0x00000000000001a8       0x30 _build/debounce.o
+ .debug_ranges  0x00000000000001d8      0x438 _build/nrf_drv_clock.o
+ .debug_ranges  0x0000000000000610       0x40 _build/app_util_platform.o
+ .debug_ranges  0x0000000000000650       0x28 _build/nrf_drv_common.o
+ .debug_ranges  0x0000000000000678      0x298 _build/nrf_drv_rtc.o
+ .debug_ranges  0x0000000000000910       0x10 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
 
-.debug_str      0x0000000000000000    0x36c71
+.debug_str      0x0000000000000000    0x36d3f
  .debug_str     0x0000000000000000      0x181 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-atexit.o)
                                         0x211 (size before relaxing)
  .debug_str     0x0000000000000181      0x359 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-exit.o)
@@ -1561,22 +1559,22 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
                                         0x103 (size before relaxing)
  .debug_str     0x00000000000009b9    0x2ee0b _build/system_nrf51.o
                                       0x2ef8c (size before relaxing)
- .debug_str     0x000000000002f7c4     0x6368 _build/main.o
-                                      0x35303 (size before relaxing)
- .debug_str     0x0000000000035b2c       0x8a _build/debounce.o
+ .debug_str     0x000000000002f7c4     0x6436 _build/main.o
+                                      0x353e5 (size before relaxing)
+ .debug_str     0x0000000000035bfa       0x8a _build/debounce.o
                                        0x305b (size before relaxing)
- .debug_str     0x0000000000035bb6      0xae2 _build/nrf_drv_clock.o
+ .debug_str     0x0000000000035c84      0xae2 _build/nrf_drv_clock.o
                                       0x346f2 (size before relaxing)
- .debug_str     0x0000000000036698       0xae _build/app_util_platform.o
+ .debug_str     0x0000000000036766       0xae _build/app_util_platform.o
                                       0x3384b (size before relaxing)
- .debug_str     0x0000000000036746       0x93 _build/nrf_drv_common.o
+ .debug_str     0x0000000000036814       0x93 _build/nrf_drv_common.o
                                       0x33c3c (size before relaxing)
- .debug_str     0x00000000000367d9      0x44f _build/nrf_drv_rtc.o
+ .debug_str     0x00000000000368a7      0x44f _build/nrf_drv_rtc.o
                                       0x34698 (size before relaxing)
- .debug_str     0x0000000000036c28       0x49 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+ .debug_str     0x0000000000036cf6       0x49 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
                                         0x1e8 (size before relaxing)
 
-.debug_frame    0x0000000000000000      0x590
+.debug_frame    0x0000000000000000      0x5b4
  .debug_frame   0x0000000000000000       0x28 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-atexit.o)
  .debug_frame   0x0000000000000028       0x28 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-exit.o)
  .debug_frame   0x0000000000000050       0x2c /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-fini.o)
@@ -1586,16 +1584,16 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_frame   0x00000000000000fc       0x30 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-__call_atexit.o)
  .debug_frame   0x000000000000012c       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
  .debug_frame   0x000000000000014c       0x30 _build/system_nrf51.o
- .debug_frame   0x000000000000017c       0xb8 _build/main.o
- .debug_frame   0x0000000000000234       0x2c _build/debounce.o
- .debug_frame   0x0000000000000260      0x150 _build/nrf_drv_clock.o
- .debug_frame   0x00000000000003b0       0x50 _build/app_util_platform.o
- .debug_frame   0x0000000000000400       0x30 _build/nrf_drv_common.o
- .debug_frame   0x0000000000000430      0x118 _build/nrf_drv_rtc.o
- .debug_frame   0x0000000000000548       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
- .debug_frame   0x0000000000000568       0x28 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
+ .debug_frame   0x000000000000017c       0xdc _build/main.o
+ .debug_frame   0x0000000000000258       0x2c _build/debounce.o
+ .debug_frame   0x0000000000000284      0x150 _build/nrf_drv_clock.o
+ .debug_frame   0x00000000000003d4       0x50 _build/app_util_platform.o
+ .debug_frame   0x0000000000000424       0x30 _build/nrf_drv_common.o
+ .debug_frame   0x0000000000000454      0x118 _build/nrf_drv_rtc.o
+ .debug_frame   0x000000000000056c       0x20 /usr/lib/gcc/arm-none-eabi/4.9.3/armv6-m/libgcc.a(_udivsi3.o)
+ .debug_frame   0x000000000000058c       0x28 /usr/lib/gcc/arm-none-eabi/4.9.3/../../../arm-none-eabi/lib/armv6-m/libc_nano.a(lib_a-memcpy.o)
 
-.debug_macro    0x0000000000000000     0xb013
+.debug_macro    0x0000000000000000     0xb037
  .debug_macro   0x0000000000000000       0xd0 _build/system_nrf51.o
  .debug_macro   0x00000000000000d0      0x83e _build/system_nrf51.o
  .debug_macro   0x000000000000090e       0x22 _build/system_nrf51.o
@@ -1613,46 +1611,46 @@ OUTPUT(_build/nrf51822_xxac.out elf32-littlearm)
  .debug_macro   0x00000000000011f7     0x745a _build/system_nrf51.o
  .debug_macro   0x0000000000008651      0x976 _build/system_nrf51.o
  .debug_macro   0x0000000000008fc7       0x1c _build/system_nrf51.o
- .debug_macro   0x0000000000008fe3      0x2c0 _build/main.o
- .debug_macro   0x00000000000092a3       0xd0 _build/main.o
- .debug_macro   0x0000000000009373       0x64 _build/main.o
- .debug_macro   0x00000000000093d7       0x34 _build/main.o
- .debug_macro   0x000000000000940b      0x150 _build/main.o
- .debug_macro   0x000000000000955b       0x10 _build/main.o
- .debug_macro   0x000000000000956b       0x8e _build/main.o
- .debug_macro   0x00000000000095f9       0x70 _build/main.o
- .debug_macro   0x0000000000009669       0x58 _build/main.o
- .debug_macro   0x00000000000096c1       0x35 _build/main.o
- .debug_macro   0x00000000000096f6       0x9c _build/main.o
- .debug_macro   0x0000000000009792       0x16 _build/main.o
- .debug_macro   0x00000000000097a8       0x97 _build/main.o
- .debug_macro   0x000000000000983f      0x29d _build/main.o
- .debug_macro   0x0000000000009adc       0xef _build/main.o
- .debug_macro   0x0000000000009bcb       0x10 _build/main.o
- .debug_macro   0x0000000000009bdb       0x52 _build/main.o
- .debug_macro   0x0000000000009c2d       0x16 _build/main.o
- .debug_macro   0x0000000000009c43       0x43 _build/main.o
- .debug_macro   0x0000000000009c86      0x180 _build/main.o
- .debug_macro   0x0000000000009e06       0x10 _build/main.o
- .debug_macro   0x0000000000009e16       0x22 _build/main.o
- .debug_macro   0x0000000000009e38       0xbe _build/main.o
- .debug_macro   0x0000000000009ef6       0x16 _build/main.o
- .debug_macro   0x0000000000009f0c      0x197 _build/main.o
- .debug_macro   0x000000000000a0a3      0x11e _build/main.o
- .debug_macro   0x000000000000a1c1       0x52 _build/main.o
- .debug_macro   0x000000000000a213       0x67 _build/main.o
- .debug_macro   0x000000000000a27a       0xbb _build/main.o
- .debug_macro   0x000000000000a335       0x2b _build/main.o
- .debug_macro   0x000000000000a360       0x10 _build/main.o
- .debug_macro   0x000000000000a370       0x10 _build/main.o
- .debug_macro   0x000000000000a380       0x22 _build/main.o
- .debug_macro   0x000000000000a3a2       0x16 _build/main.o
- .debug_macro   0x000000000000a3b8       0x5a _build/debounce.o
- .debug_macro   0x000000000000a412      0x2a3 _build/nrf_drv_clock.o
- .debug_macro   0x000000000000a6b5       0x5b _build/nrf_drv_clock.o
- .debug_macro   0x000000000000a710      0x225 _build/app_util_platform.o
- .debug_macro   0x000000000000a935       0x6d _build/app_util_platform.o
- .debug_macro   0x000000000000a9a2      0x25a _build/nrf_drv_common.o
- .debug_macro   0x000000000000abfc      0x166 _build/nrf_drv_common.o
- .debug_macro   0x000000000000ad62       0x35 _build/nrf_drv_common.o
- .debug_macro   0x000000000000ad97      0x27c _build/nrf_drv_rtc.o
+ .debug_macro   0x0000000000008fe3      0x2e4 _build/main.o
+ .debug_macro   0x00000000000092c7       0xd0 _build/main.o
+ .debug_macro   0x0000000000009397       0x64 _build/main.o
+ .debug_macro   0x00000000000093fb       0x34 _build/main.o
+ .debug_macro   0x000000000000942f      0x150 _build/main.o
+ .debug_macro   0x000000000000957f       0x10 _build/main.o
+ .debug_macro   0x000000000000958f       0x8e _build/main.o
+ .debug_macro   0x000000000000961d       0x70 _build/main.o
+ .debug_macro   0x000000000000968d       0x58 _build/main.o
+ .debug_macro   0x00000000000096e5       0x35 _build/main.o
+ .debug_macro   0x000000000000971a       0x9c _build/main.o
+ .debug_macro   0x00000000000097b6       0x16 _build/main.o
+ .debug_macro   0x00000000000097cc       0x97 _build/main.o
+ .debug_macro   0x0000000000009863      0x29d _build/main.o
+ .debug_macro   0x0000000000009b00       0xef _build/main.o
+ .debug_macro   0x0000000000009bef       0x10 _build/main.o
+ .debug_macro   0x0000000000009bff       0x52 _build/main.o
+ .debug_macro   0x0000000000009c51       0x16 _build/main.o
+ .debug_macro   0x0000000000009c67       0x43 _build/main.o
+ .debug_macro   0x0000000000009caa      0x180 _build/main.o
+ .debug_macro   0x0000000000009e2a       0x10 _build/main.o
+ .debug_macro   0x0000000000009e3a       0x22 _build/main.o
+ .debug_macro   0x0000000000009e5c       0xbe _build/main.o
+ .debug_macro   0x0000000000009f1a       0x16 _build/main.o
+ .debug_macro   0x0000000000009f30      0x197 _build/main.o
+ .debug_macro   0x000000000000a0c7      0x11e _build/main.o
+ .debug_macro   0x000000000000a1e5       0x52 _build/main.o
+ .debug_macro   0x000000000000a237       0x67 _build/main.o
+ .debug_macro   0x000000000000a29e       0xbb _build/main.o
+ .debug_macro   0x000000000000a359       0x2b _build/main.o
+ .debug_macro   0x000000000000a384       0x10 _build/main.o
+ .debug_macro   0x000000000000a394       0x10 _build/main.o
+ .debug_macro   0x000000000000a3a4       0x22 _build/main.o
+ .debug_macro   0x000000000000a3c6       0x16 _build/main.o
+ .debug_macro   0x000000000000a3dc       0x5a _build/debounce.o
+ .debug_macro   0x000000000000a436      0x2a3 _build/nrf_drv_clock.o
+ .debug_macro   0x000000000000a6d9       0x5b _build/nrf_drv_clock.o
+ .debug_macro   0x000000000000a734      0x225 _build/app_util_platform.o
+ .debug_macro   0x000000000000a959       0x6d _build/app_util_platform.o
+ .debug_macro   0x000000000000a9c6      0x25a _build/nrf_drv_common.o
+ .debug_macro   0x000000000000ac20      0x166 _build/nrf_drv_common.o
+ .debug_macro   0x000000000000ad86       0x35 _build/nrf_drv_common.o
+ .debug_macro   0x000000000000adbb      0x27c _build/nrf_drv_rtc.o

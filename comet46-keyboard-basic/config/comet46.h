@@ -97,7 +97,7 @@
                     1<<S27 | \
                     1<<S28 | \
                     1<<S29 | \
-                    1<<S30) & ~(1<<LED)
+                    1<<S30)
 
 // Low frequency clock source to be used by the SoftDevice
 #define NRF_CLOCK_LFCLKSRC      {.source        = NRF_CLOCK_LF_SRC_RC,            \
