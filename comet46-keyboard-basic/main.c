@@ -1,5 +1,5 @@
-//#define COMPILE_RIGHT
-#define COMPILE_LEFT
+#define COMPILE_RIGHT
+//#define COMPILE_LEFT
 
 #include "comet46.h"
 #include "nrf_drv_config.h"
@@ -14,7 +14,7 @@
 /*****************************************************************************/
 #define ADDRESS_PIPE0 0x01020304 //< Device unique address for data pipe 0
 #define ADDRESS_PIPE1 0x05060708 //< Device unique address for data pipe 1
-#define MAX_TX_ATTEMPTS 10 //< Number of maximum attempts to send a packet
+#define MAX_TX_ATTEMPTS 15 //< Number of maximum attempts to send a packet
 #define TX_POWER NRF_GZLL_TX_POWER_4_DBM //< Transmission power (0db is the default)
 #define MAINTENANCE_TX_INTERVAL_MS 125 //< Resending interval after a transmission fail [ms]
 #define TIMEOUT_TO_SLEEP_MS 500 //< Sleeps when no activity exists for this timeout [ms]
