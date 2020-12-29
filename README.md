@@ -1,6 +1,8 @@
 # Thumbsplit58 Keyboard Firmware
 Firmware for Nordic MCUs used in the Thumbsplit58 Keyboard.
 
+![teaser](https://github.com/mohammedari/thumbsplit58-hardware/blob/main/doc/teaser.jpg?raw=true)
+
 The firmware was originally developed by [reversebias](https://github.com/reversebias) for the [Mitosis keyboard](https://github.com/reversebias/mitosis) and has been modified by [satt99](https://github.com/satt99) to work with [Comet46 keyboard](https://github.com/satt99/comet46-firmware).
 
 ## Install dependencies
