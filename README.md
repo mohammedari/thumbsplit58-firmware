@@ -1,14 +1,11 @@
-# Comet46 Keyboard Firmware
-Firmware for Nordic MCUs used in the Comet46 Keyboard, contains precompiled .hex files, as well as sources buildable with the Nordic SDK
+# Thumbsplit58 Keyboard Firmware
+Firmware for Nordic MCUs used in the Thumbsplit58 Keyboard.
 
-The firmware was originally developed by [reversebias](https://github.com/reversebias) for the [Mitosis keyboard](https://github.com/reversebias/mitosis) and has been modified to work with Comet46.
-
-The firmware has been updated based on [repne's fork of mitosis](https://github.com/repne/mitosis).
-This update "should" extend the battery life from 1-2 months to 6 months. (Actual battery life is currently being tested.)
+The firmware was originally developed by [reversebias](https://github.com/reversebias) for the [Mitosis keyboard](https://github.com/reversebias/mitosis) and has been modified by [satt99](https://github.com/satt99) to work with [Comet46 keyboard](https://github.com/satt99/comet46-firmware).
 
 ## Install dependencies
 
-Tested on Ubuntu 16.04.2, but should be able to find alternatives on all distros. 
+Tested on Ubuntu 20.04, but should be able to find alternatives on all distros. 
 
 ```
 sudo apt install openocd gcc-arm-none-eabi
@@ -20,7 +17,7 @@ Nordic does not allow redistribution of their SDK or components, so download and
 
 https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v11.x.x/
 
-Firmware written and tested with version 11
+Current firmware only works with SDK version 11.
 
 ```
 unzip nRF5_SDK_11.0.0_89a8197.zip  -d nRF5_SDK_11
@@ -41,12 +38,12 @@ GNU_INSTALL_ROOT := /usr/
 ## Clone repository
 Inside nRF5_SDK_11/
 ```
-git clone https://github.com/satt99/comet46-firmware
+git clone https://github.com/mohammedari/thumbsplit58-firmware
 ```
 
 ## Install udev rules
 ```
-sudo cp comet46-firmware/49-stlinkv2.rules /etc/udev/rules.d/
+sudo cp thumbsplit58-firmware/49-stlinkv2.rules /etc/udev/rules.d/
 ```
 Plug in, or replug in the programmer after this.
 
@@ -64,7 +61,7 @@ It's best to remove the battery during long sessions of debugging, as charging n
 
 Launch a debugging session with:
 ```
-sudo openocd -f comet46-firmware/nrf-stlink.cfg
+./openocd.sh
 ```
 Should give you an output ending in:
 ```
@@ -72,24 +69,16 @@ Info : nrf51.cpu: hardware has 4 breakpoints, 2 watchpoints
 ```
 Otherwise you likely have a loose or wrong wire.
 
+## Build and flash receiver firmware
 
-## Manual programming
-From the factory, these chips need to be erased:
+After connecting the receiver board via stlink and launching openocd in another terminal, use the following script.
 ```
-echo reset halt | telnet localhost 4444
-echo nrf51 mass_erase | telnet localhost 4444
-```
-From there, the precompiled binaries can be loaded:
-```
-echo reset halt | telnet localhost 4444
-echo flash write_image `readlink -f precompiled/precompiled-basic-left.hex` | telnet localhost 4444
-echo reset | telnet localhost 4444
+cd thumbsplit58-firmware/thumbsplit58-receiver-basic
+./program.sh
 ```
 
-## Automatic make and programming scripts
-To use the automatic build scripts:
-```
-cd comet46-firmware/comet46-keyboard-basic
-sudo ./program.sh
-```
-An openocd session should be running in another terminal, as this script sends commands to it.
+## Build and flash keyboard firmware
+
+Use the same script under `thumbsplit58-keyboard-basic`.
+You have to change define switch `COMPILE_RIGHT` and `COMPILE_LEFT` according to the board you connect before running the script.
+
