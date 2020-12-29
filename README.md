@@ -1,5 +1,5 @@
 # Thumbsplit58 Keyboard Firmware
-Firmware for Nordic MCUs used in the Thumbsplit58 Keyboard.
+Firmware for Nordic MCUs used in the Thumbsplit58 Keyboard. You may also want to refer [PCB, case](https://github.com/mohammedari/thumbsplit58-hardware) and [qmk_firmware](https://github.com/mohammedari/qmk_firmware/blob/oneoff/thumbsplit58/keyboards/thumbsplit58/) repository.
 
 ![teaser](https://github.com/mohammedari/thumbsplit58-hardware/blob/main/doc/teaser.jpg?raw=true)
 
