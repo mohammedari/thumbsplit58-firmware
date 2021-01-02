@@ -53,10 +53,10 @@ Plug in, or replug in the programmer after this.
 The programming header on the keyboard, from right to left:  
 (Check the silk screen on PCBs for orders.)
 ```
-SWDIO
 SWCLK
+SWDIO
 GND
-3.3V
+PWR(3.3V)
 ```
 
 It's best to remove the battery during long sessions of debugging, as charging non-rechargeable lithium batteries isn't recommended.
