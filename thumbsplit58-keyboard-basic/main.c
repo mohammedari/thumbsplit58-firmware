@@ -1,7 +1,7 @@
 #define COMPILE_RIGHT
 //#define COMPILE_LEFT
 
-#include "comet46.h"
+#include "thumbsplit58.h"
 #include "nrf_drv_config.h"
 #include "nrf_gzll.h"
 #include "nrf_gpio.h"
@@ -222,17 +222,11 @@ void GPIOTE_IRQHandler(void)
 
 void  nrf_gzll_device_tx_success(uint32_t pipe, nrf_gzll_device_tx_info_t tx_info)
 {
-    uint8_t ack_payload[NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH];
+    // We do not use ack payload
+    nrf_gzll_flush_rx_fifo(pipe);
 
-    if (tx_info.payload_received_in_ack)
-    {
-        // Pop packet and write first byte of the payload to the GPIO port.
-        uint32_t ack_payload_length = NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH;    
-        nrf_gzll_fetch_packet_from_rx_fifo(pipe, ack_payload, &ack_payload_length);
-
-        // Clear maintenance flag if transmission succeeded
-        need_maintenance = false;
-    }
+    // Clear maintenance flag if transmission succeeded
+    need_maintenance = false;
 }
 
 void nrf_gzll_device_tx_failed(uint32_t pipe, nrf_gzll_device_tx_info_t tx_info)

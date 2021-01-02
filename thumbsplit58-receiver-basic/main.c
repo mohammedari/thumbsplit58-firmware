@@ -21,14 +21,13 @@ const nrf_drv_rtc_t rtc_timestamp = NRF_DRV_RTC_INSTANCE(0);
 #define RTS_PIN_NUMBER 22
 #define HWFC           false
 
-#define TX_PAYLOAD_LENGTH 4 ///< 4 byte payload length
-
 #define LEFT_PIPE 0
 #define RIGHT_PIPE 1
 
+#define DATA_BUFFER_SIZE 8
+
 static uint8_t payload[2][NRF_GZLL_CONST_MAX_PAYLOAD_LENGTH];
-static uint8_t ack_payload[TX_PAYLOAD_LENGTH];                        ///< Payload to attach to ACK sent to device.
-static uint8_t data_buffer[8];
+static uint8_t data_buffer[DATA_BUFFER_SIZE];
 
 static bool packet_received_left, packet_received_right;
 
@@ -74,7 +73,7 @@ void update_QMK()
     if (app_uart_get(&c) == NRF_SUCCESS && c == 's')
     {
         // sending data to QMK, and an end byte
-        nrf_drv_uart_tx(data_buffer, TX_PAYLOAD_LENGTH * 2);
+        nrf_drv_uart_tx(data_buffer, DATA_BUFFER_SIZE);
         app_uart_put(0xE0);
     }
     // allowing UART buffers to clear
@@ -178,8 +177,4 @@ void nrf_gzll_host_rx_data_ready(uint32_t pipe, nrf_gzll_host_rx_info_t rx_info)
     
     // not sure if required, I guess if enough packets are missed during blocking uart
     nrf_gzll_flush_rx_fifo(pipe);
-
-    //load ACK payload into TX queue
-    ack_payload[0] = 0x55;
-    nrf_gzll_add_packet_to_tx_fifo(pipe, ack_payload, TX_PAYLOAD_LENGTH);
 }
