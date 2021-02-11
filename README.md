@@ -7,7 +7,7 @@ The firmware was originally developed by [reversebias](https://github.com/revers
 
 **Note**
 
-Current firmware uses 2482MHz and 2492MHz to communicate between keyboard and receiver, which is eligible in Japan but not in the EU or US.
+Current firmware uses 2482MHz and 2494MHz to communicate between keyboard and receiver, which is eligible in Japan but not in the EU or US.
 You have to modify `channel_table` parameter to use appropriate channels in your country.
 
 You may also want to randomize `ADDRESS_PIPE0` and `ADDRESS_PIPE1` to avoid conflict with other keyboards using the same firmware.
