@@ -10,6 +10,21 @@
 #include "nrf_drv_rtc.h"
 #include "nrf_drv_clock.h"
 
+/*****************************************************************************/
+/** Configuration */
+/*****************************************************************************/
+#define ADDRESS_PIPE0 0x836b5fea         //< Device unique address for data pipe 0
+#define ADDRESS_PIPE1 0x0f2f6886         //< Device unique address for data pipe 1
+#define TX_POWER NRF_GZLL_TX_POWER_4_DBM //< Transmission power (0db is the default)
+
+// Nordic SoC uses (2400 + channel) MHz to communicate between host and device.
+// Note you have to use eligible frequencies in your country, though SoC itself accepts 0-125.
+static uint8_t channel_table[] = { 82, 94 };
+
+/*****************************************************************************/
+/** Main Implementations */
+/*****************************************************************************/
+
 const nrf_drv_rtc_t rtc_timestamp = NRF_DRV_RTC_INSTANCE(0);
 
 #define UART_TX_BUF_SIZE 256                         /**< UART TX buffer size. */
@@ -120,9 +135,20 @@ int main(void)
     nrf_drv_rtc_tick_enable(&rtc_timestamp, true);
     nrf_drv_rtc_enable(&rtc_timestamp);
 
+    // Initialize Gazell
     nrf_gzll_init(NRF_GZLL_MODE_HOST);
-    nrf_gzll_set_base_address_0(0x01020304);
-    nrf_gzll_set_base_address_1(0x05060708);
+
+    // Set TX power
+    nrf_gzll_set_tx_power(TX_POWER);
+
+    // Set channel table 
+    nrf_gzll_set_channel_table(channel_table, sizeof(channel_table));
+
+    // Addressing
+    nrf_gzll_set_base_address_0(ADDRESS_PIPE0);
+    nrf_gzll_set_base_address_1(ADDRESS_PIPE1);
+
+    // Enable Gazell to start sending over the air
     nrf_gzll_enable();
 
     // main loop

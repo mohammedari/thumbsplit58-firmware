@@ -12,13 +12,17 @@
 /*****************************************************************************/
 /** Configuration */
 /*****************************************************************************/
-#define ADDRESS_PIPE0 0x01020304 //< Device unique address for data pipe 0
-#define ADDRESS_PIPE1 0x05060708 //< Device unique address for data pipe 1
-#define MAX_TX_ATTEMPTS 20 //< Number of maximum attempts to send a packet
+#define ADDRESS_PIPE0 0x836b5fea         //< Device unique address for data pipe 0
+#define ADDRESS_PIPE1 0x0f2f6886         //< Device unique address for data pipe 1
+#define MAX_TX_ATTEMPTS 20               //< Number of maximum attempts to send a packet
 #define TX_POWER NRF_GZLL_TX_POWER_4_DBM //< Transmission power (0db is the default)
-#define MAINTENANCE_TX_INTERVAL_MS 125 //< Resending interval after a transmission fail [ms]
-#define TIMEOUT_TO_SLEEP_MS 500 //< Sleeps when no activity exists for this timeout [ms]
-#define SYNC_LIFETIME_MS 0 //< Timeout for tracking host frequency hopping [ms]
+#define MAINTENANCE_TX_INTERVAL_MS 125   //< Resending interval after a transmission fail [ms]
+#define TIMEOUT_TO_SLEEP_MS 500          //< Sleeps when no activity exists for this timeout [ms]
+#define SYNC_LIFETIME_MS 0               //< Timeout for tracking host frequency hopping [ms]
+
+// Nordic SoC uses (2400 + channel) MHz to communicate between host and device.
+// Note you have to use eligible frequencies in your country, though SoC itself accepts 0-125.
+static uint8_t channel_table[] = { 82, 94 };
 
 /*****************************************************************************/
 /** Main Implementations */
@@ -167,7 +171,7 @@ int main(void)
     nrf_gzll_init(NRF_GZLL_MODE_DEVICE);
 
     // Set max attempts of sending packets
-    _Static_assert(MAX_TX_ATTEMPTS >= NRF_GZLL_DEFAULT_CHANNEL_TABLE_SIZE * NRF_GZLL_DEFAULT_TIMESLOTS_PER_CHANNEL,
+    _Static_assert(MAX_TX_ATTEMPTS >= sizeof(channel_table) * NRF_GZLL_DEFAULT_TIMESLOTS_PER_CHANNEL,
         "Retry count is too small to establish synchronization.");
     nrf_gzll_set_max_tx_attempts(MAX_TX_ATTEMPTS);
 
@@ -176,7 +180,10 @@ int main(void)
 
     // Modify frequency hopping synchronization lifetime to reduce retry count
     nrf_gzll_set_sync_lifetime(SYNC_LIFETIME_MS * 1000 / NRF_GZLL_DEFAULT_TIMESLOT_PERIOD);
-    nrf_gzll_set_timeslots_per_channel_when_device_out_of_sync(NRF_GZLL_DEFAULT_CHANNEL_TABLE_SIZE * NRF_GZLL_DEFAULT_TIMESLOTS_PER_CHANNEL);
+    nrf_gzll_set_timeslots_per_channel_when_device_out_of_sync(sizeof(channel_table) * NRF_GZLL_DEFAULT_TIMESLOTS_PER_CHANNEL);
+
+    // Set channel table 
+    nrf_gzll_set_channel_table(channel_table, sizeof(channel_table));
 
     // Addressing
     nrf_gzll_set_base_address_0(ADDRESS_PIPE0);

@@ -5,6 +5,14 @@ Firmware for Nordic MCUs used in the Thumbsplit58 Keyboard. You may also want to
 
 The firmware was originally developed by [reversebias](https://github.com/reversebias) for the [Mitosis keyboard](https://github.com/reversebias/mitosis) and has been modified by [satt99](https://github.com/satt99) to work with [Comet46 keyboard](https://github.com/satt99/comet46-firmware).
 
+**Note**
+
+Current firmware uses 2482MHz and 2492MHz to communicate between keyboard and receiver, which is eligible in Japan but not in the EU or US.
+You have to modify `channel_table` parameter to use appropriate channels in your country.
+
+You may also want to randomize `ADDRESS_PIPE0` and `ADDRESS_PIPE1` to avoid conflict with other keyboards using the same firmware.
+Note that you cannot use `0x55` or `0xAA` in the address according to the [Nordic Gazell link layer document](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.sdk5.v11.0.0%2Fgroup__gzll__02__api.html&cp=7_5_12_6_9_1_50&anchor=ga692ed4d88a064fdf9a4e69f939582911).
+
 ## Install dependencies
 
 Tested on Ubuntu 20.04, but should be able to find alternatives on all distros. 
